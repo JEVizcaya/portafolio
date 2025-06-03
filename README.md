@@ -1,14 +1,18 @@
-# 🚀 Portafolio Personal - Desarrollador Web Junior
+# 🌟 Elegant Professional Portfolio
 
-Un elegante y profesional portafolio web desarrollado con PHP, CSS3 y JavaScript para desarrolladores web junior que buscan su primera oportunidad profesional.
+## Jorge Enrique Vizcaya Vega - Developer Portfolio
 
-## ✨ Características
+An elegant and sophisticated portfolio website showcasing professional development skills with a premium midnight blue and gold design theme.
 
-- **Diseño Moderno y Responsive**: Completamente adaptable a todos los dispositivos
-- **Animaciones Suaves**: Efectos visuales profesionales y atractivos
-- **Integración con GitHub**: Muestra automáticamente tus repositorios y estadísticas
-- **Formulario de Contacto**: Con protección anti-spam y validaciones
-- **Optimizado para SEO**: Meta tags y estructura optimizada
+### ✨ Features
+
+- **🎨 Elegant Design**: Premium midnight blue and gold color palette with glass morphism effects
+- **📱 Fully Responsive**: Optimized for all device sizes (desktop, tablet, mobile) - NO horizontal scroll
+- **🚀 Modern Animations**: Smooth CSS transitions and JavaScript interactions
+- **💼 Professional Sections**: Hero, About, Skills, Projects, GitHub integration, Contact
+- **📧 Contact Form**: Functional PHP contact form with validation and email sending
+- **🔗 GitHub API**: Live integration showing repositories and statistics
+- **⚡ Performance Optimized**: Fast loading with optimized assets
 - **Fácil Personalización**: Variables PHP para cambios rápidos
 
 ## 🛠️ Tecnologías Utilizadas
