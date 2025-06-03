@@ -177,6 +177,15 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     </div>
                     <div class="skill-item">
                         <div class="skill-info">
+                            <span class="skill-name">Python</span>
+                            <span class="skill-percentage">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-percentage="75"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
                             <span class="skill-name">Node</span>
                             <span class="skill-percentage">65%</span>
                         </div>
@@ -227,18 +236,18 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     <div class="skill-item">
                         <div class="skill-info">
                             <span class="skill-name">Wordpress</span>
-                            <span class="skill-percentage">85%</span>
+                            <span class="skill-percentage">80%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" data-percentage="85"></div>
+                            <div class="skill-progress" data-percentage="80"></div>
                         </div>
                     </div>                    <div class="skill-item">
                         <div class="skill-info">
                             <span class="skill-name">Prestashop</span>
-                            <span class="skill-percentage">85%</span>
+                            <span class="skill-percentage">75%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" data-percentage="85"></div>
+                            <div class="skill-progress" data-percentage="75"></div>
                         </div>
                     </div>
                     
@@ -330,28 +339,32 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
             </div>
             <div class="projects-grid">
                 <!-- Proyecto 1 -->
-                <div class="project-card">
+                 <div class="project-card">
                     <div class="project-icon">
-                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-gamepad"></i>
                     </div>
-                    <h3>E-Commerce Simple</h3>
+                    <h3>CeltaFan</h3>
                     <p>
-                        Tienda online básica desarrollada con Prestashop y MySQL. 
-                        Incluye carrito de compras, gestión de productos y panel administrativo.
+                        CeltaFan es un portal para aficcionados del Celta de Vigo,
+                        donde se pueden consultar noticias, resultados, plantilla, proximos partidos y más.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">Prestashop</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">SQLite</span>
                     </div>
                     <div class="project-links">
-                        <a href="http://tiendajevv.rf.gd/" class="project-link">
+                        <a href="https://jorgevizcaya.pythonanywhere.com/" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
                             Ver Demo
                         </a>
-                        
+                        <a href="https://github.com/JEVizcaya/pythonanywhere" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Código
+                        </a>
                     </div>
                 </div>
+                
 
                 <!-- Proyecto 2 -->
                 <div class="project-card">
@@ -439,8 +452,8 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     </div>
                     <h3>Blog</h3>
                     <p>
-                    </p>
-                        Blog desarrollado React+Node+Postgres con funcionalidades de registro, inicio de sesión, creación de publicaciones y comentarios.
+                        Blog personal desarrollado con React + Node + Postgres, donde se pueden crear, editar y eliminar publicaciones.
+                        Incluye autenticación de usuarios y una interfaz amigable.
                     </p>
                     <div class="project-tech">
                         <span class="tech-tag">React</span>
@@ -464,27 +477,24 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                 <!-- Proyecto 6 -->
                 <div class="project-card">
                     <div class="project-icon">
-                        <i class="fas fa-gamepad"></i>
+                        <i class="fas fa-shopping-cart"></i>
                     </div>
-                    <h3>CeltaFan</h3>
+                    <h3>E-Commerce Simple</h3>
                     <p>
-                        CeltaFan es un portal para aficcionados del Celta de Vigo,
-                        donde se pueden consultar noticias, resultados, plantilla, proximos partidos y más.
+                        Tienda online básica desarrollada con Prestashop y MySQL. 
+                        Incluye carrito de compras, gestión de productos y panel administrativo.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Django</span>
-                        <span class="tech-tag">SQLite</span>
+                        <span class="tech-tag">Prestashop</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">CSS3</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://jorgevizcaya.pythonanywhere.com/" class="project-link">
+                        <a href="http://tiendajevv.rf.gd/" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
                             Ver Demo
                         </a>
-                        <a href="https://github.com/JEVizcaya/pythonanywhere" class="project-link">
-                            <i class="fab fa-github"></i>
-                            Código
-                        </a>
+                        
                     </div>
                 </div>
             </div>
@@ -550,22 +560,31 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                             <p><?php echo $email; ?></p>
                         </div>
                     </div>
-                    
+                    <!--
                     <div class="contact-item">
                         <i class="fab fa-linkedin"></i>
                         <div class="contact-item-content">
                             <h4>LinkedIn</h4>
                             <p>Conecta conmigo profesionalmente</p>
                         </div>
-                    </div>
-                    
-                    <div class="contact-item">
+                    </div> 
+                     <div class="contact-item">
                         <i class="fab fa-github"></i>
                         <div class="contact-item-content">
                             <h4>GitHub</h4>
                             <p>Revisa mi código y proyectos</p>
                         </div>
                     </div>
+                    -->
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-item-content">
+                            <h4>Teléfono</h4>
+                            <p>+34 123 456 789</p>
+                        </div>
+                        </div>  
+                   
                     
                     <div class="contact-item">
                         <i class="fas fa-briefcase"></i>
