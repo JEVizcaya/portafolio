@@ -278,14 +278,11 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                         <span class="tech-tag">JavaScript</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">
+                        <a href="http://tiendajevv.rf.gd/" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
                             Ver Demo
                         </a>
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i>
-                            Código
-                        </a>
+                        
                     </div>
                 </div>
 

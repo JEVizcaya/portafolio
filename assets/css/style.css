@@ -1553,3 +1553,36 @@ p {
         right: 0 !important;
     }
 }
+
+/* ============================================================================
+   GitHub Repos Link Styling
+   ============================================================================ */
+.repo-name {
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    transition: var(--transition);
+}
+
+.repo-name:hover {
+    color: var(--text-primary);
+    transform: translateX(3px);
+}
+
+.repo-link {
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    transition: var(--transition);
+}
+
+.repo-link:hover {
+    color: var(--text-primary);
+    transform: translateX(3px);
+}
