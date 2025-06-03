@@ -117,8 +117,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                             <span class="stat-number counter" data-count="8">0</span>
                             <span class="stat-label">Tecnologías Aprendidas</span>
                         </div>
-                        -->
-                        <div class="stat-item">
+                        -->                        <div class="stat-item">
                             <span class="stat-number counter" data-count="605">0</span>
                             <span class="stat-label">Horas de Estudio</span>
                         </div>

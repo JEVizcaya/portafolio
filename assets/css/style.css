@@ -776,6 +776,9 @@ p {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: var(--space-sm);
+    min-width: 3ch; /* Reserva espacio para 3 caracteres */
+    text-align: center;
+    font-variant-numeric: tabular-nums; /* Números de ancho fijo */
 }
 
 .stat-label {
