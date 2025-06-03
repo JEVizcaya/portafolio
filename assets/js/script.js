@@ -667,11 +667,10 @@ function createRepositoryCard(repo) {
     // Get primary language color
     const languageColor = getLanguageColor(repo.language);
     
-    card.innerHTML = `
-        <div class="repo-header">
-            <a href="${repo.html_url}" target="_blank" rel="noopener" class="repo-name">
+    card.innerHTML = `        <div class="repo-header">
+            <span class="repo-name">
                 <i class="fab fa-github"></i> ${repo.name}
-            </a>
+            </span>
             ${repo.private ? '<span class="repo-private">Privado</span>' : ''}
         </div>
         

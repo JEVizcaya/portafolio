@@ -1241,7 +1241,7 @@ p {
 
 .repos-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-lg);
     margin-bottom: var(--space-xl);
 }
@@ -1465,9 +1465,8 @@ p {
     .projects-grid {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
-    
-    .repos-container {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      .repos-container {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -1476,9 +1475,8 @@ p {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: var(--space-lg);
     }
-    
-    .repos-container {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      .repos-container {
+        grid-template-columns: 1fr;
         gap: var(--space-lg);
     }
       .github-stats {
@@ -1762,12 +1760,6 @@ p {
     display: inline-flex;
     align-items: center;
     gap: var(--space-xs);
-    transition: var(--transition);
-}
-
-.repo-name:hover {
-    color: var(--text-primary);
-    transform: translateX(3px);
 }
 
 .repo-link {

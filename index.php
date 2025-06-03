@@ -348,12 +348,10 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                         </a>
                     </div>
                 </div>
-                
-
-                <!-- Proyecto 2 -->
+                    <!-- Proyecto 2 -->
                 <div class="project-card">
                     <div class="project-icon">
-                        <i class="fas fa-tasks"></i>
+                        <i class="fas fa-project-diagram"></i>
                     </div>
                     <h3>Gestor de Proyectos</h3>
                     <p>
@@ -375,12 +373,10 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                             Código
                         </a>
                     </div>
-                </div>
-
-                <!-- Proyecto 3 -->
+                </div>                <!-- Proyecto 3 -->
                 <div class="project-card">
                     <div class="project-icon">
-                        <i class="fas fa-calculator"></i>
+                        <i class="fas fa-robot"></i>
                     </div>
                     <h3>Plantilla MVC + IA</h3>
                     <p>
@@ -402,16 +398,14 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                             Código
                         </a>
                     </div>
-                </div>
-
-                <!-- Proyecto 4 -->
+                </div>                <!-- Proyecto 4 -->
                 <div class="project-card">
                     <div class="project-icon">
-                        <i class="fas fa-weather-sun"></i>
+                        <i class="fab fa-wordpress"></i>
                     </div>
                     <h3>Proyecto Wordpress</h3>
                     <p>
-                        Sitio web desarrollado con WordPress que muestra la pagina web de un taller de reparaciones de electrodomésticos,
+                        Sitio web desarrollado con WordPress que muestra la pagina web de un taller mecánico
                         incluyendo servicios, contacto y ubicación.
                     </p>
                     <div class="project-tech">
@@ -648,11 +642,10 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script>
+    <!-- Scripts -->    <script>
         // Configuración para JavaScript
         window.GITHUB_USERNAME = '<?php echo $github_usuario; ?>';
     </script>
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/script.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>
