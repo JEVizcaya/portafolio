@@ -894,8 +894,9 @@ p {
     height: 100%;
     background: var(--gradient-gold);
     width: 0%;
-    transition: width 2s ease;
+    transition: width 2s ease, transform 0.3s ease;
     border-radius: 4px;
+    transform-origin: left center;
 }
 
 /* AI Support Section */
@@ -1065,6 +1066,19 @@ p {
         width: 100%;
         max-width: 100%;
         margin-bottom: var(--space-xl);
+    }
+    
+    /* Mejoras específicas para skill bars en móvil */
+    .skill-item {
+        margin-bottom: var(--space-md);
+    }
+    
+    .skill-bar {
+        height: 10px; /* Slightly taller for better touch interaction */
+    }
+    
+    .skill-progress {
+        transition: width 1.5s ease, transform 0.3s ease; /* Faster animation on mobile */
     }
     
     .soft-skills {

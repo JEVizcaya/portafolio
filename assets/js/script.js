@@ -119,7 +119,9 @@ function cacheElements() {
     elements.heroDescription = document.querySelector('.hero-description');
     elements.typingElement = document.querySelector('.typing-text');
     
+    // Cachear skill bars con más detalle para debugging
     elements.skillBars = document.querySelectorAll('.skill-progress');
+    console.log(`🎯 Cached ${elements.skillBars.length} skill bars`);
     
     elements.githubStats = document.querySelectorAll('.github-stat .stat-number');
     elements.reposContainer = document.querySelector('.repos-container');
@@ -339,6 +341,48 @@ function initializeTypingEffect() {
 
 /**
  * ============================================================================
+ * UTILITY FUNCTIONS
+ * ============================================================================
+ */
+
+/**
+ * Debounce function to limit how often a function can be called
+ */
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+/**
+ * Check if element is in viewport
+ */
+function isElementInViewport(element) {
+    if (!element) return false;
+    
+    const rect = element.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+    
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= windowHeight &&
+        rect.right <= windowWidth
+    ) || (
+        rect.top < windowHeight &&
+        rect.bottom >= 0
+    );
+}
+
+/**
+ * ============================================================================
  * SKILL BARS
  * ============================================================================
  */
@@ -354,26 +398,73 @@ function initializeSkillBars() {
     }
     
     const skillsSection = document.querySelector('.skills');
-    if (!skillsSection) return;
+    const technicalSkillsSection = document.querySelector('.technical-skills');
     
+    if (!skillsSection && !technicalSkillsSection) {
+        console.warn('⚠️ Skills section not found');
+        return;
+    }
+    
+    // Detectar si estamos en mobile para ajustar threshold
+    const isMobile = window.innerWidth <= 768;
+    const threshold = isMobile ? 0.1 : 0.3;
+    
+    console.log(`🎯 Initializing skill bars - Mobile: ${isMobile}, Threshold: ${threshold}`);
+    
+    // Crear observer para la sección de habilidades
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                console.log('📊 Skills section is visible, starting animation...');
                 setTimeout(() => {
                     animateSkillBars();
                 }, CONFIG.SKILL_BAR_DELAY);
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.3 });
+    }, { 
+        threshold: threshold,
+        rootMargin: '0px 0px -50px 0px' // Trigger earlier on mobile
+    });
     
-    observer.observe(skillsSection);
+    // Observar tanto la sección completa como la técnica específicamente
+    if (skillsSection) observer.observe(skillsSection);
+    if (technicalSkillsSection) observer.observe(technicalSkillsSection);
+    
+    // También agregar listener para cambios de orientación en móvil
+    window.addEventListener('resize', debounce(() => {
+        // Re-seleccionar elementos por si cambiaron
+        elements.skillBars = document.querySelectorAll('.skill-progress');
+        console.log(`📱 Screen resized, skill bars count: ${elements.skillBars.length}`);
+        
+        // Si las barras no se han animado y están visibles, animarlas
+        const skillsVisible = isElementInViewport(skillsSection || technicalSkillsSection);
+        if (skillsVisible && elements.skillBars.length > 0) {
+            const firstBar = elements.skillBars[0];
+            if (firstBar && firstBar.style.width === '0%') {
+                console.log('🔄 Re-triggering animations after resize');
+                setTimeout(() => animateSkillBars(), 500);
+            }
+        }
+    }, 250));
 }
 
 function animateSkillBars() {
-    elements.skillBars?.forEach((bar, index) => {
+    // Re-seleccionar elementos por si no se cachearon correctamente
+    const skillBars = document.querySelectorAll('.skill-progress');
+    
+    console.log(`🎨 Animating ${skillBars.length} skill bars`);
+    
+    if (!skillBars.length) {
+        console.warn('⚠️ No skill bars found for animation');
+        return;
+    }
+    
+    skillBars.forEach((bar, index) => {
         setTimeout(() => {
             const percentage = bar.getAttribute('data-percentage') || '0';
+            console.log(`📊 Animating skill bar ${index + 1}: ${percentage}%`);
+            
             bar.style.width = percentage + '%';
             
             // Add a subtle bounce effect
@@ -385,6 +476,25 @@ function animateSkillBars() {
             }, 500);
         }, index * 200);
     });
+}
+
+/**
+ * Reset and re-animate skill bars (for testing/debugging)
+ */
+function resetAndAnimateSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-progress');
+    console.log(`🔄 Resetting ${skillBars.length} skill bars`);
+    
+    // First reset all bars to 0%
+    skillBars.forEach(bar => {
+        bar.style.width = '0%';
+        bar.style.transform = 'scaleY(1)';
+    });
+    
+    // Then animate them after a short delay
+    setTimeout(() => {
+        animateSkillBars();
+    }, 100);
 }
 
 /**
@@ -989,6 +1099,8 @@ window.Portfolio = {
     updateActiveNavLink,
     toggleMobileMenu,
     showFormMessage,
+    animateSkillBars, // Expose skill bar animation for manual triggering
+    resetAndAnimateSkillBars, // Expose reset function for testing
     state,
     CONFIG
 };
