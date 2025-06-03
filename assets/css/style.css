@@ -414,7 +414,7 @@ p {
         text-align: center;
         background: rgba(255, 255, 255, 0.05);
         border-radius: var(--border-radius);
-        margin: 3px auto;
+        margin: var(--space-md) auto; /* espacio vertical entre botones */
         display: block;
         color: var(--text-primary);
         letter-spacing: 0.5px;
@@ -1398,7 +1398,7 @@ p {
         text-align: center;
         background: rgba(255, 255, 255, 0.05);
         border-radius: var(--border-radius);
-        margin: 3px auto;
+        margin: var(--space-md) auto; /* espacio vertical entre botones */
         display: block;
         color: var(--text-primary);
         letter-spacing: 0.5px;
