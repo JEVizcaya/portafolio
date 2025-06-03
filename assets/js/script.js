@@ -110,8 +110,9 @@ function initializePortfolio() {
 function cacheElements() {
     elements.navbar = document.querySelector('.navbar');
     elements.hamburger = document.querySelector('.hamburger');
-    elements.navMenu = document.querySelector('.nav-menu');
+    elements.mobileMenu = document.querySelector('.mobile-menu');
     elements.navLinks = document.querySelectorAll('.nav-link');
+    elements.navMenu = document.querySelector('.nav-menu');
     
     elements.heroSubtitle = document.querySelector('.hero-subtitle');
     elements.heroTitle = document.querySelector('.hero-title');
@@ -139,16 +140,18 @@ function initializeNavigation() {
     // Cache DOM elements
     elements.navbar = document.querySelector('.navbar');
     elements.hamburger = document.querySelector('.hamburger');
-    elements.navMenu = document.querySelector('.nav-menu');
+    elements.mobileMenu = document.querySelector('.mobile-menu');
     elements.navLinks = document.querySelectorAll('.nav-link');
+    elements.navMenu = document.querySelector('.nav-menu');
 
     // Add index to nav items for staggered animation
-    elements.navLinks?.forEach((link, index) => {
+    const mobileMenuItems = elements.mobileMenu?.querySelectorAll('.nav-menu li');
+    mobileMenuItems?.forEach((link, index) => {
         link.style.setProperty('--item-index', index);
     });
     
     // Mobile menu toggle
-    if (elements.hamburger && elements.navMenu) {
+    if (elements.hamburger && elements.mobileMenu) {
         elements.hamburger.addEventListener('click', toggleMobileMenu);
     }
     
@@ -159,8 +162,8 @@ function initializeNavigation() {
     
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (elements.navMenu?.classList.contains('active') &&
-            !elements.navMenu.contains(e.target) &&
+        if (elements.mobileMenu?.classList.contains('active') &&
+            !elements.mobileMenu.querySelector('.nav-menu').contains(e.target) &&
             !elements.hamburger?.contains(e.target)) {
             toggleMobileMenu();
         }
@@ -169,18 +172,18 @@ function initializeNavigation() {
     // Navbar scroll effect
     window.addEventListener('scroll', handleNavbarScroll);
     
-    // Update active nav link on scroll
-    window.addEventListener('scroll', throttle(updateActiveNavLink, 100));
+    // Initial active state
+    updateActiveNavLink();
 }
 
 function toggleMobileMenu() {
     elements.hamburger?.classList.toggle('active');
-    elements.navMenu?.classList.toggle('active');
+    elements.mobileMenu?.classList.toggle('active');
     document.body.classList.toggle('menu-open');
 }
 
 function handleNavClick(e) {
-    const href = e.target.getAttribute('href');
+    const href = e.currentTarget.getAttribute('href');
     
     if (href?.startsWith('#')) {
         e.preventDefault();
@@ -188,19 +191,19 @@ function handleNavClick(e) {
         const targetElement = document.getElementById(targetId);
         
         if (targetElement) {
-            // Close mobile menu if open
-            elements.navMenu?.classList.remove('active');
-            elements.hamburger?.classList.remove('active');
-            document.body.style.overflow = '';
+            // Cerrar menú móvil si está abierto
+            if (elements.mobileMenu?.classList.contains('active')) {
+                toggleMobileMenu();
+            }
             
-            // Smooth scroll to target
-            const offsetTop = targetElement.offsetTop - 80; // Account for fixed navbar
+            // Scroll suave al objetivo
+            const offsetTop = targetElement.offsetTop - 80; // Ajuste para el navbar fijo
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
             });
             
-            // Update active state
+            // Actualizar el estado activo
             updateActiveNavLink();
         }
     }
@@ -215,22 +218,21 @@ function handleNavbarScroll() {
 
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section[id]');
-    const scrollPos = window.scrollY + 100;
-    
+    const scrollPos = window.scrollY + 100; // Ajuste para la detección
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         const sectionId = section.getAttribute('id');
         
         if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            // Remove active class from all links
-            elements.navLinks?.forEach(link => link.classList.remove('active'));
-            
-            // Add active class to current section link
-            const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-            activeLink?.classList.add('active');
-            
-            state.currentSection = sectionId;
+            // Actualizar todos los enlaces que apuntan a esta sección
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + sectionId) {
+                    link.classList.add('active');
+                }
+            });
         }
     });
 }

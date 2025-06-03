@@ -18,11 +18,19 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <!-- Navegación -->
+<body>    <!-- Navegación -->    
     <nav class="navbar">
         <div class="nav-container">
             <a href="#inicio" class="logo"><?php echo explode(' ', $nombre)[0]; ?></a>
+            <!-- Menú de Navegación para Escritorio -->
+            <ul class="nav-menu desktop-menu">
+                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                <li><a href="#sobre-mi" class="nav-link">Sobre Mí</a></li>
+                <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
+                <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+                <li><a href="#github" class="nav-link">GitHub</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -30,16 +38,17 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
             </div>
         </div>
     </nav>
-    
-    <!-- Menú Móvil -->
-    <ul class="nav-menu">
-        <li><a href="#inicio" class="nav-link active">Inicio</a></li>
-        <li><a href="#sobre-mi" class="nav-link">Sobre Mí</a></li>
-        <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
-        <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
-        <li><a href="#github" class="nav-link">GitHub</a></li>
-        <li><a href="#contacto" class="nav-link">Contacto</a></li>
-    </ul>
+    <!-- Menú de Navegación Móvil -->
+    <div class="nav-overlay mobile-menu">
+        <ul class="nav-menu">
+            <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+            <li><a href="#sobre-mi" class="nav-link">Sobre Mí</a></li>
+            <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
+            <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+            <li><a href="#github" class="nav-link">GitHub</a></li>
+            <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+    </div>
 
     <!-- Hero Section -->
     <section id="inicio" class="hero">
