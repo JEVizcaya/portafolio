@@ -226,7 +226,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     </div>
                     <div class="skill-item">
                         <div class="skill-info">
-                            <span class="skill-name">Worrpress</span>
+                            <span class="skill-name">Wordpress</span>
                             <span class="skill-percentage">85%</span>
                         </div>
                         <div class="skill-bar">
@@ -336,14 +336,13 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     </div>
                     <h3>E-Commerce Simple</h3>
                     <p>
-                        Tienda online básica desarrollada con PHP y MySQL. 
+                        Tienda online básica desarrollada con Prestashop y MySQL. 
                         Incluye carrito de compras, gestión de productos y panel administrativo.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">Prestashop</span>
                         <span class="tech-tag">MySQL</span>
                         <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">Prestashop</span>
                     </div>
                     <div class="project-links">
                         <a href="http://tiendajevv.rf.gd/" class="project-link">
@@ -359,23 +358,22 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     <div class="project-icon">
                         <i class="fas fa-tasks"></i>
                     </div>
-                    <h3>Gestor de Tareas</h3>
+                    <h3>Gestor de Proyectos</h3>
                     <p>
-                        Aplicación web para gestionar tareas personales con 
+                        Aplicación web para gestionar proyectos y asignar tareas a colaboradores con 
                         funcionalidades CRUD y interfaz intuitiva.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Local Storage</span>
-                        <span class="tech-tag">Bootstrap</span>
-                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Javascript</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">
+                        <a href="https://devflow-je.web.app/" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
                             Ver Demo
                         </a>
-                        <a href="#" class="project-link">
+                        <a href="https://github.com/JEVizcaya/devflow" class="project-link">
                             <i class="fab fa-github"></i>
                             Código
                         </a>
@@ -387,22 +385,22 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     <div class="project-icon">
                         <i class="fas fa-calculator"></i>
                     </div>
-                    <h3>Calculadora Web</h3>
+                    <h3>Proyecto ¿Quedamos?</h3>
                     <p>
-                        Calculadora funcional con operaciones básicas y avanzadas, 
-                        diseño responsive y atajos de teclado.
+                       Aplicación web para organizar eventos y reuniones con amigos,
+                        permitiendo crear eventos, invitar amigos y gestionar asistencia.
                     </p>
                     <div class="project-tech">
+                        <span class="tech-tag">PHP</span>
                         <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">CSS Grid</span>
-                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">
+                        <a href="http://jorgeenrique.atwebpages.com/" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
                             Ver Demo
                         </a>
-                        <a href="#" class="project-link">
+                        <a href="https://github.com/JEVizcaya/planes-app" class="project-link">
                             <i class="fab fa-github"></i>
                             Código
                         </a>
@@ -414,26 +412,23 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     <div class="project-icon">
                         <i class="fas fa-weather-sun"></i>
                     </div>
-                    <h3>App del Clima</h3>
+                    <h3>Proyecto Wordpress</h3>
                     <p>
-                        Aplicación que consume API de clima para mostrar 
-                        información meteorológica actual y pronósticos.
+                        Sitio web desarrollado con WordPress que muestra la pagina web de un taller de reparaciones de electrodomésticos,
+                        incluyendo servicios, contacto y ubicación.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">API REST</span>
+                        <span class="tech-tag">PHP</span>
                         <span class="tech-tag">JavaScript</span>
                         <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">Geolocation</span>
+                        
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">
+                        <a href="https://jorgevizcaya.wuaze.com/" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
                             Ver Demo
                         </a>
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i>
-                            Código
-                        </a>
+                        
                     </div>
                 </div>
 
@@ -442,23 +437,24 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     <div class="project-icon">
                         <i class="fas fa-blog"></i>
                     </div>
-                    <h3>Blog Personal</h3>
+                    <h3>Blog</h3>
                     <p>
-                        Blog desarrollado con PHP donde comparto mi experiencia 
-                        aprendiendo desarrollo web y proyectos realizados.
+                    </p>
+                        Blog desarrollado React+Node+Postgres con funcionalidades de registro, inicio de sesión, creación de publicaciones y comentarios.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Vite</span>
+                        <span class="tech-tag">JavaScript</span>
                         <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">Bootstrap</span>
-                        <span class="tech-tag">CKEditor</span>
+                        
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">
+                        <a href="https://jevizcaya.github.io/frontblog/" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
                             Ver Demo
                         </a>
-                        <a href="#" class="project-link">
+                        <a href="https://github.com/JEVizcaya/frontblog" class="project-link">
                             <i class="fab fa-github"></i>
                             Código
                         </a>
@@ -470,23 +466,22 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     <div class="project-icon">
                         <i class="fas fa-gamepad"></i>
                     </div>
-                    <h3>Juego de Memoria</h3>
+                    <h3>CeltaFan</h3>
                     <p>
-                        Juego interactivo de memoria desarrollado en JavaScript vanilla 
-                        con diferentes niveles de dificultad y puntuaciones.
+                        CeltaFan es un portal para aficcionados del Celta de Vigo,
+                        donde se pueden consultar noticias, resultados, plantilla, proximos partidos y más.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">CSS Animations</span>
-                        <span class="tech-tag">Local Storage</span>
-                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">SQLite</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">
+                        <a href="https://jorgevizcaya.pythonanywhere.com/" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
                             Ver Demo
                         </a>
-                        <a href="#" class="project-link">
+                        <a href="https://github.com/JEVizcaya/pythonanywhere" class="project-link">
                             <i class="fab fa-github"></i>
                             Código
                         </a>
