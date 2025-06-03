@@ -298,7 +298,7 @@ function initializeTypingEffect() {
     if (!typingElement || !state.animationsEnabled) return;
     
     const texts = [
-        "Desarrollador Web Junior",
+        "Desarrollador Web",
         "Apasionado por el Código",
         "Siempre Aprendiendo",
         "Listo para Crear"

@@ -6,7 +6,7 @@
 ```php
 // Cambia estos valores con tu información
 $nombre = 'Juan Pérez';                    // Tu nombre completo
-$profesion = 'Desarrollador Web Junior';   // Tu título profesional
+$profesion = 'Desarrollador Web';   // Tu título profesional
 $github_usuario = 'juanperez';             // Tu usuario de GitHub
 $email = 'juan@ejemplo.com';               // Tu email de contacto
 $linkedin = 'https://linkedin.com/in/juan-perez'; // Tu perfil de LinkedIn

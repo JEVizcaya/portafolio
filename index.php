@@ -12,7 +12,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $nombre; ?> - <?php echo $profesion; ?></title>
-    <meta name="description" content="Portafolio de <?php echo $nombre; ?>, desarrollador web junior especializado en tecnologías modernas">
+    <meta name="description" content="Portafolio de <?php echo $nombre; ?>, desarrollador web especializado en tecnologías modernas">
       <!-- Estilos -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                 <p class="hero-subtitle">👋 Bienvenido a mi portafolio</p>
                 <h1 class="hero-title">
                     Soy <?php echo $nombre; ?><br>
-                    <span class="typing-text">Desarrollador Web Junior</span>
+                    <span class="typing-text">Desarrollador Web</span>
                 </h1>
                 <p class="hero-description">
                     Recién graduado en desarrollo web con ganas de aplicar mis conocimientos 
@@ -116,7 +116,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                             <span class="stat-label">Tecnologías Aprendidas</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number counter" data-count="500">0</span>
+                            <span class="stat-number counter" data-count="605">0</span>
                             <span class="stat-label">Horas de Estudio</span>
                         </div>
                         <div class="stat-item">
@@ -210,7 +210,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                 
                 <!-- Habilidades Blandas -->
                 <div class="soft-skills">
-                    <h3><i class="fas fa-users"></i> Habilidades Blandas</h3>
+                    <h3><i class="fas fa-users"></i> Habilidades Sociales</h3>
                     <div class="soft-skills-grid">
                         <div class="soft-skill-item">
                             <i class="fas fa-lightbulb"></i>
@@ -275,7 +275,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                         <span class="tech-tag">PHP</span>
                         <span class="tech-tag">MySQL</span>
                         <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Prestashop</span>
                     </div>
                     <div class="project-links">
                         <a href="http://tiendajevv.rf.gd/" class="project-link">
