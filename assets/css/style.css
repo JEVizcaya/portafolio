@@ -928,6 +928,22 @@ p {
     line-height: 1.5;
 }
 
+/* Responsive adjustments for skills section */
+@media (max-width: 768px) {
+    .skills-container {
+        display: block;
+    }
+    .technical-skills,
+    .soft-skills {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: var(--space-2xl);
+    }
+    .soft-skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Projects Section */
 .projects {
     background: var(--bg-secondary);
@@ -1331,6 +1347,19 @@ p {
     
     .floating-icon {
         font-size: 1.8rem;
+    }
+    
+    .skills-container {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-md) !important;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .technical-skills,
+    .soft-skills {
+        width: 100%;
+        box-sizing: border-box;
+        padding: var(--space-xl) !important;
     }
 }
 
