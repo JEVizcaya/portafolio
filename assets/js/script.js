@@ -176,7 +176,13 @@ function initializeNavigation() {
     updateActiveNavLink();
 }
 
-function toggleMobileMenu() {
+function toggleMobileMenu(e) {
+    // Prevenir cualquier comportamiento por defecto
+    if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    
     elements.hamburger?.classList.toggle('active');
     elements.mobileMenu?.classList.toggle('active');
     document.body.classList.toggle('menu-open');

@@ -246,6 +246,7 @@ p {
     border-bottom: var(--glass-border);
     box-shadow: var(--glass-shadow);
     height: 70px;
+    overflow-y: hidden; /* prevent vertical scroll */
 }
 
 .navbar.scrolled {
@@ -309,6 +310,9 @@ p {
 
 /* Estilos para móvil */
 @media (max-width: 768px) {
+    .nav-overlay {
+        display: block;
+    }
     .desktop-menu {
         display: none;
     }
@@ -358,6 +362,7 @@ p {
         z-index: 999;
         pointer-events: none;
         transition: background-color 0.3s ease;
+        overflow-y: hidden; /* prevent vertical scroll */
     }
 
     .mobile-menu .nav-menu {
@@ -374,7 +379,7 @@ p {
         justify-content: center;
         align-items: center;
         transition: right 0.3s ease;
-        overflow-y: auto;
+        overflow-y: hidden;
         padding: var(--space-xl) 0;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
     }
@@ -385,7 +390,7 @@ p {
     }
 
     .mobile-menu.active .nav-menu {
-        right: 0;
+        right: 0 !important;
     }
 
     .mobile-menu .nav-menu li {
@@ -434,9 +439,7 @@ p {
 /* Desktop Navigation Styles */
 @media (min-width: 769px) {
     .nav-overlay {
-        position: static;
-        background: none;
-        pointer-events: all;
+        display: none;
     }
 
     .nav-menu {
@@ -1364,6 +1367,8 @@ p {
         align-items: center;
         transition: var(--transition);
         z-index: 999;
+        /* remove vertical scroll */
+        overflow-y: hidden;
         padding: var(--space-xl) 0;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
     }
@@ -1500,5 +1505,51 @@ p {
         margin-bottom: var(--space-sm);
         width: 100%;
         max-width: 280px;
+    }
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+}
+
+/* Remove global nav-overlay hiding, managed in desktop media only */
+/* .nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 999;
+    pointer-events: none;
+    transition: background-color 0.3s ease;
+    overflow: hidden; /* Prevent any scrolling */
+
+
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 999;
+    pointer-events: none;
+    transition: background-color 0.3s ease;
+    overflow: hidden; /* Prevent any scrolling */
+}
+
+@media (max-width: 768px) {
+    /* Force mobile nav-menu into view when active */
+    .mobile-menu.active .nav-menu {
+        right: 0 !important;
     }
 }

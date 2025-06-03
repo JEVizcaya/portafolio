@@ -18,10 +18,9 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>    <!-- Navegación -->    
-    <nav class="navbar">
+<body>    <!-- Navegación -->      <nav class="navbar">
         <div class="nav-container">
-            <a href="#inicio" class="logo"><?php echo explode(' ', $nombre)[0]; ?></a>
+            <span class="logo"><?php echo explode(' ', $nombre)[0]; ?></span>
             <!-- Menú de Navegación para Escritorio -->
             <ul class="nav-menu desktop-menu">
                 <li><a href="#inicio" class="nav-link active">Inicio</a></li>
