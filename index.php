@@ -68,8 +68,9 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                 </h1>
                 <p class="hero-description">
                     Recién graduado en desarrollo web con ganas de aplicar mis conocimientos 
-                    en proyectos reales. Especializado en tecnologías modernas y siempre 
-                    dispuesto a aprender más.
+                    en proyectos reales. Me esfuerzo por mantenerme actualizado y busco siempre la mejor solución para cada reto.
+                    Siempre dispuesto a aprender y crecer profesionalmente,
+                 
                 </p>
                 <div class="hero-buttons">
                     <a href="#proyectos" class="btn btn-primary">
@@ -401,10 +402,10 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     <div class="project-icon">
                         <i class="fas fa-calculator"></i>
                     </div>
-                    <h3>Proyecto ¿Quedamos?</h3>
+                    <h3>Plantilla MVC + IA</h3>
                     <p>
-                       Aplicación web para organizar eventos y reuniones con amigos,
-                        permitiendo crear eventos, invitar amigos y gestionar asistencia.
+                        Aplicación web que utiliza un patrón MVC con IA integrada para generar respuestas a preguntas frecuentes.
+                        Incluye un sistema de gestión de usuarios y una interfaz amigable.
                     </p>
                     <div class="project-tech">
                         <span class="tech-tag">PHP</span>
@@ -412,11 +413,11 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                         <span class="tech-tag">CSS</span>
                     </div>
                     <div class="project-links">
-                        <a href="http://jorgeenrique.atwebpages.com/" class="project-link">
+                        <a href="https://prestashop2025.lovestoblog.com/" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
                             Ver Demo
                         </a>
-                        <a href="https://github.com/JEVizcaya/planes-app" class="project-link">
+                        <a href="https://github.com/JEVizcaya/basemvcphp" class="project-link">
                             <i class="fab fa-github"></i>
                             Código
                         </a>

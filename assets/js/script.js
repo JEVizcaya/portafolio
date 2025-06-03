@@ -80,8 +80,7 @@ function initializePortfolio() {
     try {
         // Cache DOM elements
         cacheElements();
-        
-        // Initialize components
+          // Initialize components
         initializeNavigation();
         initializeAnimations();
         initializeSkillBars();
@@ -89,6 +88,26 @@ function initializePortfolio() {
         initializeScrollReveal();
         initializeContactForm();
         initializeTypingEffect();
+        
+        // Add resize listener to re-initialize skill bars on mobile
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                // Re-initialize skill bars after resize (important for mobile orientation change)
+                if (window.innerWidth <= 768) {
+                    const skillsSection = document.querySelector('.skills');
+                    const rect = skillsSection?.getBoundingClientRect();
+                    
+                    // If skills section is visible after resize, re-animate bars
+                    if (rect && rect.top < window.innerHeight && rect.bottom > 0) {
+                        setTimeout(() => {
+                            animateSkillBars();
+                        }, 300);
+                    }
+                }
+            }, 250);
+        });
         
         // Load GitHub data
         loadGitHubData();
@@ -344,9 +363,17 @@ function initializeTypingEffect() {
  */
 
 function initializeSkillBars() {
+    // Re-cache skill bars to ensure we have the latest elements
+    elements.skillBars = document.querySelectorAll('.skill-progress');
+    
+    if (!elements.skillBars.length) {
+        console.warn('⚠️ No skill bars found');
+        return;
+    }
+    
     if (!state.animationsEnabled) {
         // If animations are disabled, show full bars immediately
-        elements.skillBars?.forEach(bar => {
+        elements.skillBars.forEach(bar => {
             const percentage = bar.getAttribute('data-percentage') || '0';
             bar.style.width = percentage + '%';
         });
@@ -354,26 +381,52 @@ function initializeSkillBars() {
     }
     
     const skillsSection = document.querySelector('.skills');
-    if (!skillsSection) return;
+    if (!skillsSection) {
+        console.warn('⚠️ Skills section not found');
+        return;
+    }
+    
+    // Use a more aggressive threshold for mobile devices
+    const isMobile = window.innerWidth <= 768;
+    const threshold = isMobile ? 0.1 : 0.3;
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                console.log('📊 Skills section visible, animating bars...');
                 setTimeout(() => {
                     animateSkillBars();
                 }, CONFIG.SKILL_BAR_DELAY);
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.3 });
+    }, { threshold: threshold, rootMargin: '50px' });
     
     observer.observe(skillsSection);
 }
 
 function animateSkillBars() {
-    elements.skillBars?.forEach((bar, index) => {
+    // Re-select skill bars in case DOM changed
+    const skillBars = document.querySelectorAll('.skill-progress');
+    
+    if (!skillBars.length) {
+        console.warn('⚠️ No skill bars found for animation');
+        return;
+    }
+    
+    console.log(`📊 Animating ${skillBars.length} skill bars`);
+    
+    skillBars.forEach((bar, index) => {
+        // Reset bar width first
+        bar.style.width = '0%';
+        bar.style.transition = 'none';
+        
         setTimeout(() => {
             const percentage = bar.getAttribute('data-percentage') || '0';
+            console.log(`📊 Animating bar ${index + 1}: ${percentage}%`);
+            
+            // Add transition and animate
+            bar.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
             bar.style.width = percentage + '%';
             
             // Add a subtle bounce effect
@@ -382,8 +435,8 @@ function animateSkillBars() {
                 setTimeout(() => {
                     bar.style.transform = 'scaleY(1)';
                 }, 200);
-            }, 500);
-        }, index * 200);
+            }, 1000);
+        }, index * 150);
     });
 }
 
@@ -989,6 +1042,7 @@ window.Portfolio = {
     updateActiveNavLink,
     toggleMobileMenu,
     showFormMessage,
+    animateSkillBars, // Expose skill bar animation for manual triggering
     state,
     CONFIG
 };
