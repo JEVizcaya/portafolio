@@ -597,9 +597,46 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                             <p>Inmediata para nuevos proyectos</p>
                         </div>
                     </div>
-                </div>
-                
-                
+                </div> 
+                <!-- formulario contacto
+                <form class="contact-form" action="contact.php" method="POST">
+                    <h3>Envíame un mensaje</h3>
+
+                    <div class="form-group">
+                        <label for="name">Nombre *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Asunto *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Mensaje *</label>
+                        <textarea id="message" name="message" required placeholder="Cuéntame sobre tu proyecto o oportunidad laboral..."></textarea>
+                    </div>
+
+                    <input type="text" name="website" style="display: none;">
+                    
+                    
+                    <?php /*if (function_exists('getCSRFToken')): ?>
+                        <input type="hidden" name="csrf_token" value="<?php echo getCSRFToken(); ?>">
+                    <?php endif;*/ ?>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Enviar Mensaje
+                    </button>
+                </form>
+                   formulario contacto -->
+
+                <!-- ...existing code continues... -->
             </div>
         </div>
     </section>
@@ -612,12 +649,17 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     <a href="https://github.com/<?php echo $github_usuario; ?>" target="_blank" rel="noopener" class="social-link">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="<?php echo $linkedin; ?>" target="_blank" rel="noopener" class="social-link">
+                    <!--
+                    <a href="<?php /*echo $linkedin;*/ ?>" target="_blank" rel="noopener" class="social-link">
                         <i class="fab fa-linkedin"></i>
                     </a>
+                     -->
+                
+                
                     <a href="mailto:<?php echo $email; ?>" class="social-link">
                         <i class="fas fa-envelope"></i>
                     </a>
+                 </div>   
                 </div>
                 <p class="footer-text">
                     &copy; 2025 <?php echo $nombre; ?>. Desarrollado con ❤️ y muchas ganas de aprender.
