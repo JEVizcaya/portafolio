@@ -146,16 +146,16 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                 <!-- Habilidades Técnicas -->
                 <div class="technical-skills">
                     <h3><i class="fas fa-laptop-code"></i> Habilidades Técnicas</h3>
-                    
                     <div class="skill-item">
                         <div class="skill-info">
-                            <span class="skill-name">HTML5 & CSS3</span>
-                            <span class="skill-percentage">90%</span>
+                            <span class="skill-name">PHP</span>
+                            <span class="skill-percentage">70%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" data-percentage="90"></div>
+                            <div class="skill-progress" data-percentage="70"></div>
                         </div>
                     </div>
+                    
                     
                     <div class="skill-item">
                         <div class="skill-info">
@@ -166,14 +166,31 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                             <div class="skill-progress" data-percentage="75"></div>
                         </div>
                     </div>
-                    
                     <div class="skill-item">
                         <div class="skill-info">
-                            <span class="skill-name">PHP</span>
-                            <span class="skill-percentage">70%</span>
+                            <span class="skill-name">Java</span>
+                            <span class="skill-percentage">75%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" data-percentage="70"></div>
+                            <div class="skill-progress" data-percentage="75"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Node</span>
+                            <span class="skill-percentage">65%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-percentage="65"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">React</span>
+                            <span class="skill-percentage">65%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-percentage="65"></div>
                         </div>
                     </div>
                     
@@ -197,6 +214,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                         </div>
                     </div>
                     
+                    
                     <div class="skill-item">
                         <div class="skill-info">
                             <span class="skill-name">Bootstrap</span>
@@ -204,6 +222,56 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                         </div>
                         <div class="skill-bar">
                             <div class="skill-progress" data-percentage="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Worrpress</span>
+                            <span class="skill-percentage">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-percentage="85"></div>
+                        </div>
+                    </div>                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Prestashop</span>
+                            <span class="skill-percentage">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-percentage="85"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reconocimiento del apoyo de IA -->
+                    <div class="ai-support-section">
+                        <div class="ai-support-card">
+                            <div class="ai-support-header">
+                                <i class="fas fa-robot"></i>
+                                <h4>Desarrollado con la ayuda inestimable de la IA</h4>
+                            </div>
+                            <p class="ai-support-description">
+                                Todas estas habilidades técnicas han sido adquiridas y perfeccionadas 
+                                con el apoyo constante de herramientas de inteligencia artificial, 
+                                que han sido fundamentales en mi proceso de aprendizaje y desarrollo profesional.
+                            </p>
+                            <div class="ai-tools-grid">
+                                <div class="ai-tool-item">
+                                    <i class="fas fa-brain"></i>
+                                    <span>Asistencia en código</span>
+                                </div>
+                                <div class="ai-tool-item">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <span>Resolución de problemas</span>
+                                </div>
+                                <div class="ai-tool-item">
+                                    <i class="fas fa-book-open"></i>
+                                    <span>Aprendizaje acelerado</span>
+                                </div>
+                                <div class="ai-tool-item">
+                                    <i class="fas fa-search"></i>
+                                    <span>Investigación técnica</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -513,42 +581,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     </div>
                 </div>
                 
-                <form class="contact-form" action="contact.php" method="POST">
-                    <h3>Envíame un mensaje</h3>
-                    
-                    <div class="form-group">
-                        <label for="name">Nombre *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="subject">Asunto *</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Mensaje *</label>
-                        <textarea id="message" name="message" required placeholder="Cuéntame sobre tu proyecto o oportunidad laboral..."></textarea>
-                    </div>
-                    
-                    <!-- Campo honeypot (oculto para spam protection) -->
-                    <input type="text" name="website" style="display: none;">
-                    
-                    <!-- CSRF Token -->
-                    <?php if (function_exists('getCSRFToken')): ?>
-                    <input type="hidden" name="csrf_token" value="<?php echo getCSRFToken(); ?>">
-                    <?php endif; ?>
-                    
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i>
-                        Enviar Mensaje
-                    </button>
-                </form>
+                
             </div>
         </div>
     </section>
