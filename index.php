@@ -321,11 +321,10 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                 <h2>Mis Proyectos</h2>
                 <p>Proyectos desarrollados durante mi formación y práctica personal</p>
             </div>
-            <div class="projects-grid">
-                <!-- Proyecto 1 -->
+            <div class="projects-grid">                <!-- Proyecto 1 -->
                  <div class="project-card">
                     <div class="project-icon">
-                        <i class="fas fa-gamepad"></i>
+                        <i class="fas fa-futbol"></i>
                     </div>
                     <h3>CeltaFan</h3>
                     <p>
@@ -559,7 +558,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                         <i class="fas fa-phone"></i>
                         <div class="contact-item-content">
                             <h4>Teléfono</h4>
-                            <p>+34 123 456 789</p>
+                            <p>+34 645 82 75 93</p>
                         </div>
                         </div>  
                    

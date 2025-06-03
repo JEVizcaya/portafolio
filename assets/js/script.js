@@ -301,7 +301,7 @@ function initializeTypingEffect() {
     
     const texts = [
         "Desarrollador Web",
-        "Apasionado por el Código",
+        
         "Siempre Aprendiendo",
         "Listo para Crear"
     ];
