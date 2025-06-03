@@ -136,6 +136,17 @@ function cacheElements() {
  */
 
 function initializeNavigation() {
+    // Cache DOM elements
+    elements.navbar = document.querySelector('.navbar');
+    elements.hamburger = document.querySelector('.hamburger');
+    elements.navMenu = document.querySelector('.nav-menu');
+    elements.navLinks = document.querySelectorAll('.nav-link');
+
+    // Add index to nav items for staggered animation
+    elements.navLinks?.forEach((link, index) => {
+        link.style.setProperty('--item-index', index);
+    });
+    
     // Mobile menu toggle
     if (elements.hamburger && elements.navMenu) {
         elements.hamburger.addEventListener('click', toggleMobileMenu);
@@ -146,6 +157,15 @@ function initializeNavigation() {
         link.addEventListener('click', handleNavClick);
     });
     
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (elements.navMenu?.classList.contains('active') &&
+            !elements.navMenu.contains(e.target) &&
+            !elements.hamburger?.contains(e.target)) {
+            toggleMobileMenu();
+        }
+    });
+    
     // Navbar scroll effect
     window.addEventListener('scroll', handleNavbarScroll);
     
@@ -154,11 +174,9 @@ function initializeNavigation() {
 }
 
 function toggleMobileMenu() {
-    elements.hamburger.classList.toggle('active');
-    elements.navMenu.classList.toggle('active');
-    
-    // Prevent body scroll when menu is open
-    document.body.style.overflow = elements.navMenu.classList.contains('active') ? 'hidden' : '';
+    elements.hamburger?.classList.toggle('active');
+    elements.navMenu?.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
 }
 
 function handleNavClick(e) {

@@ -23,14 +23,6 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
     <nav class="navbar">
         <div class="nav-container">
             <a href="#inicio" class="logo"><?php echo explode(' ', $nombre)[0]; ?></a>
-            <ul class="nav-menu">
-                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
-                <li><a href="#sobre-mi" class="nav-link">Sobre Mí</a></li>
-                <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
-                <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
-                <li><a href="#github" class="nav-link">GitHub</a></li>
-                <li><a href="#contacto" class="nav-link">Contacto</a></li>
-            </ul>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -38,6 +30,16 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
             </div>
         </div>
     </nav>
+    
+    <!-- Menú Móvil -->
+    <ul class="nav-menu">
+        <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+        <li><a href="#sobre-mi" class="nav-link">Sobre Mí</a></li>
+        <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
+        <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+        <li><a href="#github" class="nav-link">GitHub</a></li>
+        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+    </ul>
 
     <!-- Hero Section -->
     <section id="inicio" class="hero">
