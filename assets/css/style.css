@@ -826,13 +826,19 @@ p {
 }
 
 .skills-container {
+    display: block;
+}
+
+.skills-top-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
 }
 
 .technical-skills,
-.soft-skills {
+.soft-skills,
+.ai-support-section {
     background: var(--bg-card);
     padding: var(--space-2xl);
     border-radius: var(--border-radius-lg);
@@ -842,7 +848,8 @@ p {
 }
 
 .technical-skills:hover,
-.soft-skills:hover {
+.soft-skills:hover,
+.ai-support-section:hover {
     transform: translateY(-5px);
     box-shadow: var(--premium-shadow);
 }
@@ -854,6 +861,11 @@ p {
     display: flex;
     align-items: center;
     gap: var(--space-md);
+}
+
+.soft-skills h3 {
+    justify-content: center;
+    text-align: center;
 }
 
 .skill-item {
@@ -1030,16 +1042,41 @@ p {
 }
 
 /* Responsive adjustments for skills section */
+@media (max-width: 968px) {
+    .skills-top-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+    
+    .ai-support-section {
+        margin-top: var(--space-lg);
+    }
+}
+
 @media (max-width: 768px) {
     .skills-container {
         display: block;
     }
+    
+    .skills-top-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        margin-bottom: var(--space-xl);
+    }
+    
     .technical-skills,
-    .soft-skills {
+    .soft-skills,
+    .ai-support-section {
         width: 100%;
         max-width: 100%;
-        margin-bottom: var(--space-2xl);
+        margin-bottom: var(--space-xl);
     }
+    
+    .soft-skills {
+        width: 100%;
+        margin-top: 0;
+    }
+    
     .soft-skills-grid {
         grid-template-columns: 1fr;
     }
@@ -1449,13 +1486,15 @@ p {
     .floating-icon {
         font-size: 1.8rem;
     }
+      .skills-container {
+        display: block !important;
+    }
     
-    .skills-container {
+    .skills-top-grid {
         grid-template-columns: 1fr !important;
         gap: var(--space-md) !important;
-        width: 100%;
-        box-sizing: border-box;
-    }    .technical-skills,
+        margin-bottom: var(--space-xl);
+    }.technical-skills,
     .soft-skills {
         width: 100%;
         box-sizing: border-box;
