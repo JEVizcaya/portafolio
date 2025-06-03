@@ -863,11 +863,6 @@ p {
     gap: var(--space-md);
 }
 
-.soft-skills h3 {
-    justify-content: center;
-    text-align: center;
-}
-
 .skill-item {
     margin-bottom: var(--space-lg);
 }
