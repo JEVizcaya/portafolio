@@ -144,12 +144,22 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
             <div class="section-title">
                 <h2>Mis Habilidades</h2>
                 <p>Tecnologías que he aprendido y competencias que he desarrollado</p>
-            </div>            <div class="skills-container">
+            </div>            
+            <div class="skills-container">
                 <!-- Contenedor superior: Habilidades Técnicas y Reconocimiento IA lado a lado -->
                 <div class="skills-top-grid">
                     <!-- Habilidades Técnicas -->
                     <div class="technical-skills">
                         <h3><i class="fas fa-laptop-code"></i> Habilidades Técnicas</h3>
+                        <div class="ai-support-header">
+                                <i class="fas fa-robot"></i>
+                                <h4>Desarrollado con la ayuda inestimable de la IA</h4>
+                            </div>
+                            <p class="ai-support-description">
+                                Todas estas habilidades técnicas han sido adquiridas y perfeccionadas 
+                                con el apoyo constante de herramientas de inteligencia artificial, 
+                                que han sido fundamentales en mi proceso de aprendizaje y desarrollo profesional.
+                            </p>
                         <div class="skill-item">
                             <div class="skill-info">
                                 <span class="skill-name">PHP</span>
@@ -254,42 +264,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Reconocimiento del apoyo de IA - Al lado de habilidades técnicas -->
-                    <div class="ai-support-section">
-                        <div class="ai-support-card">
-                            <div class="ai-support-header">
-                                <i class="fas fa-robot"></i>
-                                <h4>Desarrollado con la ayuda inestimable de la IA</h4>
-                            </div>
-                            <p class="ai-support-description">
-                                Todas estas habilidades técnicas han sido adquiridas y perfeccionadas 
-                                con el apoyo constante de herramientas de inteligencia artificial, 
-                                que han sido fundamentales en mi proceso de aprendizaje y desarrollo profesional.
-                            </p>
-                            <div class="ai-tools-grid">
-                                <div class="ai-tool-item">
-                                    <i class="fas fa-brain"></i>
-                                    <span>Asistencia en código</span>
-                                </div>
-                                <div class="ai-tool-item">
-                                    <i class="fas fa-lightbulb"></i>
-                                    <span>Resolución de problemas</span>
-                                </div>
-                                <div class="ai-tool-item">
-                                    <i class="fas fa-book-open"></i>
-                                    <span>Aprendizaje acelerado</span>
-                                </div>
-                                <div class="ai-tool-item">
-                                    <i class="fas fa-search"></i>
-                                    <span>Investigación técnica</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Habilidades Sociales - Debajo de ambas -->
+                    <!-- Habilidades Sociales - Debajo de ambas -->
                 <div class="soft-skills">
                     <h3><i class="fas fa-users"></i> Habilidades Sociales</h3>
                     <div class="soft-skills-grid">
@@ -330,6 +305,11 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                         </div>
                     </div>
                 </div>
+                    
+                    
+                </div>
+                
+                
             </div>
         </div>
     </section>
