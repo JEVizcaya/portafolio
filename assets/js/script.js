@@ -19,7 +19,21 @@ const CONFIG = {
     SKILL_BAR_DELAY: 500,
     
     // Contact form settings
-    FORM_SUBMIT_DELAY: 1000
+    FORM_SUBMIT_DELAY: 1000,    // Manual repository selection (set specific repos to display)
+    // If empty array, will fetch latest repos automatically
+    SELECTED_REPOS: [
+        // Examples - replace with your actual repository names:
+        // Uncomment and modify these lines to manually select repositories:
+         'Checkandfood-1',
+         'planes-app', 
+         'formacomtrello',
+         'apptask',
+         'tiendamvcj',
+         'portafolio'
+    ],
+    
+    // Set to true to use manual selection, false for automatic latest repos
+    USE_MANUAL_SELECTION: true
 };
 
 // DOM elements cache
@@ -546,6 +560,64 @@ function animateCounter(element) {
 
 /**
  * ============================================================================
+ * REPOSITORY MANAGEMENT UTILITIES
+ * ============================================================================
+ */
+
+/**
+ * Switch between automatic and manual repository selection
+ * @param {boolean} useManual - True for manual selection, false for automatic
+ * @param {Array} selectedRepos - Array of repository names (only used if useManual is true)
+ */
+function switchRepositoryMode(useManual, selectedRepos = []) {
+    CONFIG.USE_MANUAL_SELECTION = useManual;
+    if (useManual && selectedRepos.length > 0) {
+        CONFIG.SELECTED_REPOS = selectedRepos;
+    }
+    
+    console.log(`🔄 Switched to ${useManual ? 'manual' : 'automatic'} repository mode`);
+    
+    // Reload GitHub data with new settings
+    loadGitHubData();
+}
+
+/**
+ * Add a repository to the manual selection list
+ * @param {string} repoName - Name of the repository to add
+ */
+function addRepositoryToSelection(repoName) {
+    if (!CONFIG.SELECTED_REPOS.includes(repoName)) {
+        CONFIG.SELECTED_REPOS.push(repoName);
+        console.log(`➕ Added repository: ${repoName}`);
+        
+        if (CONFIG.USE_MANUAL_SELECTION) {
+            loadGitHubData();
+        }
+    } else {
+        console.warn(`⚠️ Repository ${repoName} is already in selection`);
+    }
+}
+
+/**
+ * Remove a repository from the manual selection list
+ * @param {string} repoName - Name of the repository to remove
+ */
+function removeRepositoryFromSelection(repoName) {
+    const index = CONFIG.SELECTED_REPOS.indexOf(repoName);
+    if (index > -1) {
+        CONFIG.SELECTED_REPOS.splice(index, 1);
+        console.log(`➖ Removed repository: ${repoName}`);
+        
+        if (CONFIG.USE_MANUAL_SELECTION) {
+            loadGitHubData();
+        }
+    } else {
+        console.warn(`⚠️ Repository ${repoName} not found in selection`);
+    }
+}
+
+/**
+ * ============================================================================
  * GITHUB INTEGRATION
  * ============================================================================
  */
@@ -562,6 +634,19 @@ async function loadGitHubData() {
     
     try {
         console.log(`📊 Loading GitHub data for: ${githubUsername}`);
+        
+        // Repository Selection System:
+        // 1. Set CONFIG.USE_MANUAL_SELECTION = true to enable manual selection
+        // 2. Add repository names to CONFIG.SELECTED_REPOS array
+        // 3. Repositories will appear in the order specified (or sorted by update date)
+        // 4. Set CONFIG.USE_MANUAL_SELECTION = false for automatic latest repos
+        
+        if (CONFIG.USE_MANUAL_SELECTION) {
+            console.log('🎯 Using manual repository selection mode');
+        } else {
+            console.log('🔄 Using automatic latest repositories mode');
+        }
+        
         state.isLoading = true;
         
         // Show loading state
@@ -598,6 +683,12 @@ async function fetchGitHubUser(username) {
 }
 
 async function fetchGitHubRepos(username) {
+    // If manual selection is enabled and repositories are configured, fetch only those
+    if (CONFIG.USE_MANUAL_SELECTION && CONFIG.SELECTED_REPOS && CONFIG.SELECTED_REPOS.length > 0) {
+        return await fetchSelectedRepositories(username, CONFIG.SELECTED_REPOS);
+    }
+    
+    // Otherwise, fetch latest repositories automatically
     const response = await fetch(
         `${CONFIG.GITHUB_API_BASE}/users/${username}/repos?sort=updated&per_page=${CONFIG.REPOS_TO_SHOW * 2}`
     );
@@ -611,6 +702,38 @@ async function fetchGitHubRepos(username) {
         .filter(repo => !repo.fork) // Exclude forks
         .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
         .slice(0, CONFIG.REPOS_TO_SHOW);
+}
+
+async function fetchSelectedRepositories(username, repoNames) {
+    const repositories = [];
+    
+    console.log(`🎯 Fetching ${repoNames.length} manually selected repositories...`);
+    
+    // Fetch each selected repository individually
+    for (const repoName of repoNames) {
+        try {
+            const response = await fetch(`${CONFIG.GITHUB_API_BASE}/repos/${username}/${repoName}`);
+            if (response.ok) {
+                const repo = await response.json();
+                repositories.push(repo);
+                console.log(`✅ Successfully loaded repository: ${repoName}`);
+            } else {
+                console.warn(`⚠️ Repository ${repoName} not found or not accessible (Status: ${response.status})`);
+            }
+        } catch (error) {
+            console.error(`❌ Error fetching repository ${repoName}:`, error);
+        }
+    }
+    
+    console.log(`📦 Loaded ${repositories.length} repositories successfully`);
+    
+    // Sort by update date and limit to configured amount
+    // Note: When using manual selection, repositories will appear in the order specified in SELECTED_REPOS
+    // unless you want them sorted by update date (uncomment the next line)
+    // return repositories.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)).slice(0, CONFIG.REPOS_TO_SHOW);
+    
+    // Return repositories in the order they were specified
+    return repositories.slice(0, CONFIG.REPOS_TO_SHOW);
 }
 
 function updateGitHubStats(userData) {
@@ -1100,6 +1223,10 @@ window.Portfolio = {
     showFormMessage,
     animateSkillBars, // Expose skill bar animation for manual triggering
     resetAndAnimateSkillBars, // Expose reset function for testing
+    // Repository management functions
+    switchRepositoryMode,
+    addRepositoryToSelection,
+    removeRepositoryFromSelection,
     state,
     CONFIG
 };

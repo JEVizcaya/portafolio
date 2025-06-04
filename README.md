@@ -11,7 +11,8 @@ An elegant and sophisticated portfolio website showcasing professional developme
 - **🚀 Modern Animations**: Smooth CSS transitions and JavaScript interactions
 - **💼 Professional Sections**: Hero, About, Skills, Projects, GitHub integration, Contact
 - **📧 Contact Form**: Functional PHP contact form with validation and email sending
-- **🔗 GitHub API**: Live integration showing repositories and statistics
+- **🔗 GitHub API**: Live integration showing repositories and statistics with manual/automatic selection
+- **📋 Repository Management**: Choose between automatic latest repos or manually curated selection
 - **⚡ Performance Optimized**: Fast loading with optimized assets
 - **Fácil Personalización**: Variables PHP para cambios rápidos
 
@@ -85,6 +86,15 @@ Edita la sección de proyectos en `index.php` para agregar tus propios proyectos
 </div>
 ```
 
+### 📋 Sistema de Repositorios Manuales
+
+El portafolio incluye un sistema flexible para mostrar repositorios de GitHub:
+
+**Modo Automático (por defecto)**: Muestra los 6 repositorios más recientes
+**Modo Manual**: Selecciona repositorios específicos a mostrar
+
+Para configurar repositorios manuales, consulta el archivo `REPOSITORIOS_MANUAL.md` incluido.
+
 ## 📁 Estructura de Archivos
 
 ```
@@ -92,6 +102,7 @@ portafolio/
 ├── index.php              # Página principal
 ├── contact.php            # Procesador del formulario
 ├── README.md              # Este archivo
+├── REPOSITORIOS_MANUAL.md # Guía del sistema de repositorios manuales
 └── assets/
     ├── css/
     │   └── style.css      # Estilos principales
