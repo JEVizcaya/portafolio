@@ -14,7 +14,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
     <title><?php echo $nombre; ?> - <?php echo $profesion; ?></title>
     <meta name="description" content="Portafolio de <?php echo $nombre; ?>, desarrollador web especializado en tecnologías modernas">
       <!-- Estilos -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/portafolio.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -643,6 +643,6 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
         // Configuración para JavaScript
         window.GITHUB_USERNAME = '<?php echo $github_usuario; ?>';
     </script>
-    <script src="assets/js/script.js?v=<?php echo time(); ?>"></script>
+    <script src="assets/js/portafolio.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>
