@@ -12,9 +12,9 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $nombre; ?> - <?php echo $profesion; ?></title>
-    <meta name="description" content="Portafolio de <?php echo $nombre; ?>, desarrollador web especializado en tecnologías modernas">
-      <!-- Estilos -->
+    <meta name="description" content="Portafolio de <?php echo $nombre; ?>, desarrollador web especializado en tecnologías modernas">    <!-- Estilos -->
     <link rel="stylesheet" href="assets/css/portafolio.css">
+    <link rel="stylesheet" href="assets/css/charla.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -607,8 +607,56 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
 
                 <!-- ...existing code continues... -->
             </div>
+        </div>    </section>    <!-- Chat Flotante -->
+    <div id="chat-overlay" class="chat-overlay"></div>
+    <div id="chat-toggle" class="chat-toggle" title="Chatear con IA sobre Jorge">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <div id="chat-container" class="chat-container">
+        <div class="chat-header">
+            <div class="chat-header-content">
+                <div class="chat-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="chat-info">
+                    <h4>Asistente IA</h4>
+                    <span class="chat-status">En línea</span>
+                </div>
+            </div>
+            <button id="chat-close" class="chat-close">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-    </section>
+        
+        <div class="chat-messages" id="chat-messages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    <p>¡Hola! 👋 Soy el asistente IA de Jorge Enrique Vizcaya Vega. Puedo ayudarte con información sobre sus proyectos, habilidades, experiencia y formación profesional. ¿En qué puedo ayudarte?</p>
+                </div>
+                <div class="message-time"></div>
+            </div>
+        </div>
+        
+        <div class="chat-input-container">
+            <div class="chat-input-wrapper">
+                <textarea 
+                    id="chat-input" 
+                    placeholder="Pregúntame sobre Jorge, sus proyectos o habilidades..."
+                    rows="1"
+                    maxlength="1000"
+                ></textarea>
+                <button id="chat-send" class="chat-send-btn" title="Enviar mensaje">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <div class="chat-typing" id="chat-typing" style="display: none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -638,9 +686,8 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
     </footer>
 
     <!-- Scripts -->    <script>
-        // Configuración para JavaScript
-        window.GITHUB_USERNAME = '<?php echo $github_usuario; ?>';
-    </script>
-    <script src="assets/js/portafolio.js?v=<?php echo time(); ?>"></script>
+        // Configuración para JavaScript        window.GITHUB_USERNAME = '<?php echo $github_usuario; ?>';
+    </script>    <script src="assets/js/portafolio.js?v=<?php echo time(); ?>"></script>
+    <script src="assets/js/charla.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

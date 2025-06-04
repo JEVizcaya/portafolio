@@ -624,9 +624,9 @@ function removeRepositoryFromSelection(repoName) {
 
 async function loadGitHubData() {
     // Get GitHub username from PHP (it should be available in a script tag)
-    const githubUsername = window.GITHUB_USERNAME || 'tu-usuario-github';
+    const githubUsername = window.GITHUB_USERNAME || 'JEVizcaya';
     
-    if (!githubUsername || githubUsername === 'tu-usuario-github') {
+    if (!githubUsername) {
         console.warn('⚠️ GitHub username not configured');
         showGitHubFallback();
         return;

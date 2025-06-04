@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico Chat - Error Debug</title>
+    <link rel="stylesheet" href="assets/css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        .debug-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .debug-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffd700;
+        }
+        
+        .debug-section {
+            background: #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #ffd700;
+        }
+        
+        .debug-section h3 {
+            margin-top: 0;
+            color: #ffd700;
+        }
+        
+        .error-log {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            border: 1px solid #444;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .test-button {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #1a1a1a;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 5px;
+            transition: transform 0.2s;
+        }
+        
+        .test-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-good { background: #4CAF50; }
+        .status-error { background: #F44336; }
+        .status-warning { background: #FF9800; }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <div class="debug-header">
+            <h1><i class="fas fa-bug"></i> Diagnóstico del Chat</h1>
+            <p>Herramienta para identificar y solucionar problemas del chat</p>
+        </div>
+
+        <!-- Status Check -->
+        <div class="debug-section">
+            <h3><span id="status-indicator" class="status-indicator status-warning"></span>Estado del Sistema</h3>
+            <div id="system-status">
+                <p>🔍 Verificando componentes del chat...</p>
+            </div>
+            <button class="test-button" onclick="checkSystemStatus()">
+                <i class="fas fa-sync"></i> Verificar Estado
+            </button>
+        </div>
+
+        <!-- Console Errors -->
+        <div class="debug-section">
+            <h3><i class="fas fa-exclamation-triangle"></i> Errores de Consola</h3>
+            <div class="error-log" id="console-errors">
+                <p>Capturando errores de JavaScript...</p>
+            </div>
+            <button class="test-button" onclick="clearErrors()">
+                <i class="fas fa-trash"></i> Limpiar Log
+            </button>
+        </div>
+
+        <!-- API Test -->
+        <div class="debug-section">
+            <h3><i class="fas fa-robot"></i> Prueba de API</h3>
+            <div id="api-test-result">
+                <p>Haz clic en "Probar API" para verificar la comunicación con el backend.</p>
+            </div>
+            <button class="test-button" onclick="testAPI()">
+                <i class="fas fa-flask"></i> Probar API
+            </button>
+            <button class="test-button" onclick="testDirectAPI()">
+                <i class="fas fa-direct-hit"></i> API Directa
+            </button>
+        </div>
+
+        <!-- Chat Elements -->
+        <div class="debug-section">
+            <h3><i class="fas fa-cogs"></i> Elementos del Chat</h3>
+            <div id="elements-status">
+                <p>Verificando elementos DOM del chat...</p>
+            </div>
+            <button class="test-button" onclick="checkElements()">
+                <i class="fas fa-search"></i> Verificar Elementos
+            </button>
+        </div>
+
+        <!-- Manual Test -->
+        <div class="debug-section">
+            <h3><i class="fas fa-comment"></i> Prueba Manual del Chat</h3>
+            <div>
+                <input type="text" id="manual-message" placeholder="Escribe un mensaje de prueba..." 
+                       style="width: 60%; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #444; color: white;">
+                <button class="test-button" onclick="sendManualMessage()">
+                    <i class="fas fa-paper-plane"></i> Enviar
+                </button>
+            </div>
+            <div id="manual-test-result" style="margin-top: 15px;">
+                <p>Escribe un mensaje y haz clic en "Enviar" para probar la funcionalidad.</p>
+            </div>
+        </div>
+
+        <!-- Quick Fixes -->
+        <div class="debug-section">
+            <h3><i class="fas fa-wrench"></i> Soluciones Rápidas</h3>
+            <button class="test-button" onclick="reloadChatScript()">
+                <i class="fas fa-redo"></i> Recargar Chat Script
+            </button>
+            <button class="test-button" onclick="resetChat()">
+                <i class="fas fa-power-off"></i> Reiniciar Chat
+            </button>
+            <button class="test-button" onclick="window.open('/portafolio/', '_blank')">
+                <i class="fas fa-external-link-alt"></i> Abrir Portfolio
+            </button>
+        </div>
+    </div>
+
+    <!-- Chat Elements (Hidden for testing) -->
+    <div id="chat-overlay" class="chat-overlay" style="display: none;"></div>
+    <div id="chat-toggle" class="chat-toggle" title="Chat Debug" style="position: relative; margin: 20px auto; top: auto; right: auto;">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <div id="chat-container" class="chat-container" style="position: relative; top: auto; right: auto; width: 300px; height: 400px; margin: 20px auto;">
+        <div class="chat-header">
+            <div class="chat-header-content">
+                <div class="chat-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="chat-info">
+                    <h4>Debug Chat</h4>
+                    <span class="chat-status">Modo Diagnóstico</span>
+                </div>
+            </div>
+            <button id="chat-close" class="chat-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="chat-messages" id="chat-messages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    <p>🔧 Chat en modo diagnóstico. Usa los botones de arriba para probar la funcionalidad.</p>
+                </div>
+                <div class="message-time"></div>
+            </div>
+        </div>
+        
+        <div class="chat-input-container">
+            <div class="chat-input-wrapper">
+                <textarea 
+                    id="chat-input" 
+                    placeholder="Debug mode..."
+                    rows="1"
+                    maxlength="1000"
+                ></textarea>
+                <button id="chat-send" class="chat-send-btn" title="Enviar mensaje">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <div class="chat-typing" id="chat-typing" style="display: none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/chat.js"></script>
+    <script>
+        // Error logging
+        const errorLog = [];
+        const originalConsoleError = console.error;
+        console.error = function(...args) {
+            errorLog.push(`[ERROR] ${new Date().toLocaleTimeString()}: ${args.join(' ')}`);
+            updateErrorDisplay();
+            originalConsoleError.apply(console, args);
+        };
+
+        const originalConsoleWarn = console.warn;
+        console.warn = function(...args) {
+            errorLog.push(`[WARN] ${new Date().toLocaleTimeString()}: ${args.join(' ')}`);
+            updateErrorDisplay();
+            originalConsoleWarn.apply(console, args);
+        };
+
+        window.addEventListener('error', (e) => {
+            errorLog.push(`[JS ERROR] ${e.filename}:${e.lineno} - ${e.message}`);
+            updateErrorDisplay();
+        });
+
+        function updateErrorDisplay() {
+            const errorContainer = document.getElementById('console-errors');
+            if (errorLog.length === 0) {
+                errorContainer.innerHTML = '<p style="color: #4CAF50;">✅ No hay errores registrados</p>';
+            } else {
+                errorContainer.innerHTML = errorLog.map(err => `<div>${err}</div>`).join('');
+                errorContainer.scrollTop = errorContainer.scrollHeight;
+            }
+        }
+
+        function clearErrors() {
+            errorLog.length = 0;
+            updateErrorDisplay();
+        }
+
+        function checkSystemStatus() {
+            const statusContainer = document.getElementById('system-status');
+            const statusIndicator = document.getElementById('status-indicator');
+            
+            let status = {
+                chatManager: !!window.chatManager,
+                chatToggle: !!document.getElementById('chat-toggle'),
+                chatContainer: !!document.getElementById('chat-container'),
+                chatInput: !!document.getElementById('chat-input'),
+                chatCSS: !!document.querySelector('link[href*="chat.css"]'),
+                chatJS: !!window.PortfolioChat
+            };
+            
+            let allGood = Object.values(status).every(s => s);
+            
+            statusIndicator.className = `status-indicator ${allGood ? 'status-good' : 'status-error'}`;
+            
+            statusContainer.innerHTML = `
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;">
+                    ${Object.entries(status).map(([key, value]) => `
+                        <div style="display: flex; align-items: center;">
+                            <span class="status-indicator ${value ? 'status-good' : 'status-error'}"></span>
+                            ${key}: ${value ? '✅' : '❌'}
+                        </div>
+                    `).join('')}
+                </div>
+                <p style="margin-top: 15px; color: ${allGood ? '#4CAF50' : '#F44336'};">
+                    ${allGood ? '✅ Sistema funcionando correctamente' : '❌ Se detectaron problemas'}
+                </p>
+            `;
+        }
+
+        function checkElements() {
+            const container = document.getElementById('elements-status');
+            const elements = [
+                'chat-toggle', 'chat-container', 'chat-messages', 
+                'chat-input', 'chat-send', 'chat-overlay'
+            ];
+            
+            container.innerHTML = elements.map(id => {
+                const element = document.getElementById(id);
+                return `
+                    <div style="display: flex; align-items: center; margin: 5px 0;">
+                        <span class="status-indicator ${element ? 'status-good' : 'status-error'}"></span>
+                        #${id}: ${element ? '✅ Encontrado' : '❌ No encontrado'}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function testAPI() {
+            const resultContainer = document.getElementById('api-test-result');
+            resultContainer.innerHTML = '<p>🔄 Probando comunicación con la API...</p>';
+            
+            try {
+                const formData = new FormData();
+                formData.append('prompt', 'Test de diagnóstico - ¿funciona la API?');
+                
+                const response = await fetch('chat.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    resultContainer.innerHTML = `
+                        <p style="color: #4CAF50;">✅ API funcionando correctamente</p>
+                        <div style="background: #1a1a1a; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                            <strong>Respuesta:</strong><br>
+                            ${result.response.substring(0, 200)}${result.response.length > 200 ? '...' : ''}
+                        </div>
+                    `;
+                } else {
+                    resultContainer.innerHTML = `
+                        <p style="color: #F44336;">❌ Error en la API</p>
+                        <div style="background: #1a1a1a; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                            <strong>Error:</strong> ${result.error}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultContainer.innerHTML = `
+                    <p style="color: #F44336;">❌ Error de conexión</p>
+                    <div style="background: #1a1a1a; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                        <strong>Error:</strong> ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        function testDirectAPI() {
+            window.open('chat.php', '_blank');
+        }
+
+        async function sendManualMessage() {
+            const messageInput = document.getElementById('manual-message');
+            const resultContainer = document.getElementById('manual-test-result');
+            const message = messageInput.value.trim();
+            
+            if (!message) {
+                resultContainer.innerHTML = '<p style="color: #FF9800;">⚠️ Escribe un mensaje primero</p>';
+                return;
+            }
+            
+            resultContainer.innerHTML = '<p>🔄 Enviando mensaje...</p>';
+            
+            if (window.chatManager && typeof window.chatManager.sendMessage === 'function') {
+                try {
+                    await window.chatManager.sendMessage(message);
+                    resultContainer.innerHTML = '<p style="color: #4CAF50;">✅ Mensaje enviado correctamente usando chatManager</p>';
+                    messageInput.value = '';
+                } catch (error) {
+                    resultContainer.innerHTML = `<p style="color: #F44336;">❌ Error enviando mensaje: ${error.message}</p>`;
+                }
+            } else {
+                resultContainer.innerHTML = '<p style="color: #F44336;">❌ chatManager no está disponible</p>';
+            }
+        }
+
+        function reloadChatScript() {
+            const oldScript = document.querySelector('script[src*="chat.js"]');
+            if (oldScript) {
+                oldScript.remove();
+            }
+            
+            const newScript = document.createElement('script');
+            newScript.src = 'assets/js/chat.js?v=' + Date.now();
+            document.head.appendChild(newScript);
+            
+            setTimeout(() => {
+                alert('Script recargado. Verifica el estado del sistema.');
+            }, 1000);
+        }
+
+        function resetChat() {
+            if (window.chatManager) {
+                window.chatManager.closeChat();
+                window.chatManager = null;
+            }
+            
+            setTimeout(() => {
+                window.chatManager = new PortfolioChat();
+                alert('Chat reiniciado. Verifica el estado del sistema.');
+            }, 500);
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(checkSystemStatus, 500);
+            setTimeout(checkElements, 600);
+            
+            // Set message timestamp
+            const timeElements = document.querySelectorAll('.message-time');
+            timeElements.forEach(el => {
+                el.textContent = new Date().toLocaleTimeString();
+            });
+        });
+    </script>
+</body>
+</html>

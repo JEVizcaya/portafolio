@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Integration Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background: #d4edda; border-color: #c3e6cb; }
+        .error { background: #f8d7da; border-color: #f5c6cb; }
+        .info { background: #d1ecf1; border-color: #bee5eb; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 3px; overflow-x: auto; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        .repo-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin: 20px 0; }
+        .repo-card { border: 1px solid #ddd; padding: 15px; border-radius: 5px; }
+        .stats { display: flex; gap: 20px; margin: 15px 0; }
+        .stat { text-align: center; padding: 10px; background: #f8f9fa; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 GitHub Integration Verification</h1>
+    
+    <!-- Configuration Status -->
+    <div class="test-section info">
+        <h2>📋 Configuration Status</h2>
+        <div id="config-status">Loading...</div>
+    </div>
+    
+    <!-- User Data -->
+    <div class="test-section" id="user-section">
+        <h2>👤 GitHub User Data</h2>
+        <div id="user-data">Loading...</div>
+    </div>
+    
+    <!-- Statistics -->
+    <div class="test-section" id="stats-section">
+        <h2>📊 GitHub Statistics</h2>
+        <div class="stats" id="github-stats">Loading...</div>
+    </div>
+    
+    <!-- Repositories -->
+    <div class="test-section" id="repos-section">
+        <h2>📦 GitHub Repositories</h2>
+        <button onclick="testAutoRepos()">Test Auto Mode</button>
+        <button onclick="testManualRepos()">Test Manual Mode</button>
+        <div id="repos-data">Click a button to load repositories...</div>
+    </div>
+    
+    <!-- API Raw Response -->
+    <div class="test-section">
+        <h2>🔍 Raw API Response</h2>
+        <button onclick="showRawAPI()">Show Raw API Data</button>
+        <pre id="raw-api">Click button to see raw API response...</pre>
+    </div>
+
+    <script>
+        // Simulate PHP configuration
+        window.GITHUB_USERNAME = 'JEVizcaya';
+        
+        const CONFIG = {
+            GITHUB_API_BASE: 'https://api.github.com',
+            REPOS_TO_SHOW: 6,
+            USE_MANUAL_SELECTION: false,
+            SELECTED_REPOS: [
+                'Checkandfood-1',
+                'planes-app', 
+                'formacomtrello',
+                'apptask',
+                'tiendamvcj',
+                'portafolio'
+            ]
+        };
+
+        async function checkConfiguration() {
+            const configDiv = document.getElementById('config-status');
+            const githubUsername = window.GITHUB_USERNAME || 'JEVizcaya';
+            
+            configDiv.innerHTML = `
+                <strong>GitHub Username:</strong> ${githubUsername}<br>
+                <strong>API Base:</strong> ${CONFIG.GITHUB_API_BASE}<br>
+                <strong>Repos to Show:</strong> ${CONFIG.REPOS_TO_SHOW}<br>
+                <strong>Manual Selection:</strong> ${CONFIG.USE_MANUAL_SELECTION}<br>
+                <strong>Selected Repos:</strong> ${CONFIG.SELECTED_REPOS.join(', ')}
+            `;
+        }
+
+        async function loadUserData() {
+            try {
+                const username = window.GITHUB_USERNAME || 'JEVizcaya';
+                const response = await fetch(`${CONFIG.GITHUB_API_BASE}/users/${username}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const userData = await response.json();
+                
+                document.getElementById('user-data').innerHTML = `
+                    <strong>Name:</strong> ${userData.name || 'Not set'}<br>
+                    <strong>Username:</strong> ${userData.login}<br>
+                    <strong>Bio:</strong> ${userData.bio || 'Not set'}<br>
+                    <strong>Location:</strong> ${userData.location || 'Not set'}<br>
+                    <strong>Company:</strong> ${userData.company || 'Not set'}<br>
+                    <strong>Profile:</strong> <a href="${userData.html_url}" target="_blank">${userData.html_url}</a>
+                `;
+                
+                document.getElementById('github-stats').innerHTML = `
+                    <div class="stat">
+                        <div><strong>${userData.public_repos || 0}</strong></div>
+                        <div>Repositories</div>
+                    </div>
+                    <div class="stat">
+                        <div><strong>${userData.followers || 0}</strong></div>
+                        <div>Followers</div>
+                    </div>
+                    <div class="stat">
+                        <div><strong>${userData.following || 0}</strong></div>
+                        <div>Following</div>
+                    </div>
+                    <div class="stat">
+                        <div><strong>${userData.public_gists || 0}</strong></div>
+                        <div>Gists</div>
+                    </div>
+                `;
+                
+                document.getElementById('user-section').className = 'test-section success';
+                document.getElementById('stats-section').className = 'test-section success';
+                
+            } catch (error) {
+                document.getElementById('user-data').innerHTML = `<strong>Error:</strong> ${error.message}`;
+                document.getElementById('user-section').className = 'test-section error';
+                document.getElementById('stats-section').className = 'test-section error';
+                console.error('Error loading user data:', error);
+            }
+        }
+
+        async function testAutoRepos() {
+            try {
+                const username = window.GITHUB_USERNAME || 'JEVizcaya';
+                const response = await fetch(`${CONFIG.GITHUB_API_BASE}/users/${username}/repos?sort=updated&per_page=${CONFIG.REPOS_TO_SHOW * 2}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const repos = await response.json();
+                const filteredRepos = repos
+                    .filter(repo => !repo.fork)
+                    .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+                    .slice(0, CONFIG.REPOS_TO_SHOW);
+                
+                displayRepos(filteredRepos, 'Automatic Mode');
+                
+            } catch (error) {
+                document.getElementById('repos-data').innerHTML = `<strong>Error:</strong> ${error.message}`;
+                document.getElementById('repos-section').className = 'test-section error';
+            }
+        }
+
+        async function testManualRepos() {
+            try {
+                const username = window.GITHUB_USERNAME || 'JEVizcaya';
+                const repositories = [];
+                
+                for (const repoName of CONFIG.SELECTED_REPOS) {
+                    try {
+                        const response = await fetch(`${CONFIG.GITHUB_API_BASE}/repos/${username}/${repoName}`);
+                        if (response.ok) {
+                            const repo = await response.json();
+                            repositories.push(repo);
+                        } else {
+                            console.warn(`Repository ${repoName} not found (${response.status})`);
+                        }
+                    } catch (error) {
+                        console.error(`Error fetching ${repoName}:`, error);
+                    }
+                }
+                
+                displayRepos(repositories, 'Manual Mode');
+                
+            } catch (error) {
+                document.getElementById('repos-data').innerHTML = `<strong>Error:</strong> ${error.message}`;
+                document.getElementById('repos-section').className = 'test-section error';
+            }
+        }
+
+        function displayRepos(repos, mode) {
+            if (repos.length === 0) {
+                document.getElementById('repos-data').innerHTML = `<strong>${mode}:</strong> No repositories found`;
+                return;
+            }
+            
+            const repoCards = repos.map(repo => `
+                <div class="repo-card">
+                    <h4><a href="${repo.html_url}" target="_blank">${repo.name}</a></h4>
+                    <p>${repo.description || 'No description'}</p>
+                    <small>
+                        Language: ${repo.language || 'Not specified'} | 
+                        ⭐ ${repo.stargazers_count} | 
+                        🍴 ${repo.forks_count} |
+                        Updated: ${new Date(repo.updated_at).toLocaleDateString()}
+                    </small>
+                </div>
+            `).join('');
+            
+            document.getElementById('repos-data').innerHTML = `
+                <h3>${mode} (${repos.length} repositories)</h3>
+                <div class="repo-list">${repoCards}</div>
+            `;
+            
+            document.getElementById('repos-section').className = 'test-section success';
+        }
+
+        async function showRawAPI() {
+            try {
+                const username = window.GITHUB_USERNAME || 'JEVizcaya';
+                const [userResponse, reposResponse] = await Promise.all([
+                    fetch(`${CONFIG.GITHUB_API_BASE}/users/${username}`),
+                    fetch(`${CONFIG.GITHUB_API_BASE}/users/${username}/repos?sort=updated&per_page=3`)
+                ]);
+                
+                const userData = await userResponse.json();
+                const reposData = await reposResponse.json();
+                
+                document.getElementById('raw-api').textContent = JSON.stringify({
+                    user: userData,
+                    repositories: reposData
+                }, null, 2);
+                
+            } catch (error) {
+                document.getElementById('raw-api').textContent = `Error: ${error.message}`;
+            }
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkConfiguration();
+            loadUserData();
+        });
+    </script>
+</body>
+</html>

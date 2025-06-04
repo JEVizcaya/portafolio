@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Chat Debug</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        #messages { border: 1px solid #ccc; height: 300px; overflow-y: auto; padding: 10px; margin: 20px 0; }
+        #input { width: 70%; padding: 10px; }
+        #send { padding: 10px 20px; }
+        .message { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .user { background: #007bff; color: white; text-align: right; }
+        .bot { background: #f8f9fa; border: 1px solid #dee2e6; }
+        .error { background: #f8d7da; color: #721c24; }
+        #debug { background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; margin: 20px 0; white-space: pre-wrap; font-family: monospace; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h1>Test Chat Debug</h1>
+    
+    <div id="debug">Logs aparecerán aquí...</div>
+    
+    <div id="messages"></div>
+    
+    <input type="text" id="input" placeholder="Escribe tu mensaje...">
+    <button id="send">Enviar</button>
+    
+    <button onclick="testAPI()">Test API Direct</button>
+    
+    <script>
+        function log(message) {
+            const debug = document.getElementById('debug');
+            const timestamp = new Date().toLocaleTimeString();
+            debug.textContent += `[${timestamp}] ${message}\n`;
+            debug.scrollTop = debug.scrollHeight;
+            console.log(message);
+        }
+        
+        function addMessage(text, type) {
+            const messages = document.getElementById('messages');
+            const div = document.createElement('div');
+            div.className = `message ${type}`;
+            div.textContent = text;
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+        }
+        
+        async function sendMessage() {
+            const input = document.getElementById('input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            log(`Enviando mensaje: ${message}`);
+            addMessage(message, 'user');
+            input.value = '';
+            
+            try {
+                const formData = new FormData();
+                formData.append('prompt', message);
+                
+                log('Realizando fetch request a charla.php...');
+                
+                const response = await fetch('charla.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                log(`Response status: ${response.status}`);
+                log(`Response ok: ${response.ok}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                log(`Raw response data: ${JSON.stringify(data, null, 2)}`);
+                
+                if (data.success) {
+                    log('Success: true');
+                    log(`Response text: ${data.response}`);
+                    addMessage(data.response, 'bot');
+                } else {
+                    log('Success: false');
+                    log(`Error: ${data.error}`);
+                    addMessage(`Error: ${data.error}`, 'error');
+                }
+                
+            } catch (error) {
+                log(`Catch error: ${error.message}`);
+                addMessage(`Connection error: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testAPI() {
+            log('=== TESTING API DIRECTLY ===');
+            try {
+                const response = await fetch('charla.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'prompt=Test message from debug'
+                });
+                
+                log(`Direct API status: ${response.status}`);
+                const data = await response.json();
+                log(`Direct API response: ${JSON.stringify(data, null, 2)}`);
+                
+            } catch (error) {
+                log(`Direct API error: ${error.message}`);
+            }
+        }
+        
+        document.getElementById('send').addEventListener('click', sendMessage);
+        document.getElementById('input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        log('Debug page loaded');
+    </script>
+</body>
+</html>
