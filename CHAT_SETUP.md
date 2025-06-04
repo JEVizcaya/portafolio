@@ -10,11 +10,11 @@
 4. Selecciona un proyecto existente o crea uno nuevo
 5. Copia la API key generada
 
-### 2. Configurar el Proyecto
+### 2. Configurar el Proyecto 
 
 La API key ya está configurada en el archivo `config.php` con la clave:
 ```
-AIzaSyD9eQT1N6aWlwS25HocZMqrwBEf5r7UpE8
+
 ```
 
 ### 3. Verificar Instalación
