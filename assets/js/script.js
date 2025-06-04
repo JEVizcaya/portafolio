@@ -33,7 +33,7 @@ const CONFIG = {
     ],
     
     // Set to true to use manual selection, false for automatic latest repos
-    USE_MANUAL_SELECTION: true
+    USE_MANUAL_SELECTION: false
 };
 
 // DOM elements cache
@@ -631,7 +631,7 @@ async function loadGitHubData() {
         showGitHubFallback();
         return;
     }
-    
+
     try {
         console.log(`📊 Loading GitHub data for: ${githubUsername}`);
         
@@ -646,7 +646,7 @@ async function loadGitHubData() {
         } else {
             console.log('🔄 Using automatic latest repositories mode');
         }
-        
+
         state.isLoading = true;
         
         // Show loading state
@@ -667,7 +667,7 @@ async function loadGitHubData() {
         console.log('✅ GitHub data loaded successfully');
     } catch (error) {
         console.error('❌ Error loading GitHub data:', error);
-        showGitHubError();
+            showGitHubError();
     } finally {
         state.isLoading = false;
         hideLoadingState();
@@ -700,8 +700,8 @@ async function fetchGitHubRepos(username) {
     // Filter and sort repositories
     return repos
         .filter(repo => !repo.fork) // Exclude forks
-        .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
-        .slice(0, CONFIG.REPOS_TO_SHOW);
+            .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+            .slice(0, CONFIG.REPOS_TO_SHOW);
 }
 
 async function fetchSelectedRepositories(username, repoNames) {
@@ -1140,7 +1140,7 @@ function createScrollToTopButton() {
     
     // Show/hide button based on scroll position
     window.addEventListener('scroll', throttle(() => {
-        const shouldShow = window.pageYOffset > 300;
+        const shouldShow = window.pageYOffset > 200; // Aparece más temprano
         button.classList.toggle('visible', shouldShow);
     }, 100));
     
