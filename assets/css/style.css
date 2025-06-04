@@ -743,6 +743,11 @@ p {
 .about-text h3 {
     color: var(--accent-gold);
     margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+.about-text p {
+    text-align: center;
 }
 
 .about-stats {
@@ -1313,6 +1318,7 @@ p {
 .contact-info h3 {
     color: var(--accent-gold);
     margin-bottom: var(--space-xl);
+    text-align: center;
 }
 
 .contact-item {
@@ -1521,9 +1527,9 @@ p {
     .ai-support-card {
         padding: var(--space-lg) !important;
     }
-    
-    .ai-support-header {
-        flex-direction: column;
+      .ai-support-header {
+        flex-direction: row;
+        justify-content: center;
         text-align: center;
         gap: var(--space-sm);
     }

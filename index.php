@@ -158,108 +158,107 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                                 Todas estas habilidades técnicas han sido adquiridas y perfeccionadas 
                                 con el apoyo constante de herramientas de inteligencia artificial, 
                                 que han sido fundamentales en mi proceso de aprendizaje y desarrollo profesional.
-                            </p>
-                        <div class="skill-item">
+                            </p>                        <div class="skill-item">
                             <div class="skill-info">
                                 <span class="skill-name">PHP</span>
-                                <span class="skill-percentage">70%</span>
+                                <span class="skill-percentage">45%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percentage="70"></div>
+                                <div class="skill-progress" data-percentage="45"></div>
                             </div>
                         </div>
                         
                         <div class="skill-item">
                             <div class="skill-info">
                                 <span class="skill-name">JavaScript</span>
-                                <span class="skill-percentage">75%</span>
+                                <span class="skill-percentage">50%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percentage="75"></div>
+                                <div class="skill-progress" data-percentage="50"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
                                 <span class="skill-name">Java</span>
-                                <span class="skill-percentage">75%</span>
+                                <span class="skill-percentage">40%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percentage="75"></div>
+                                <div class="skill-progress" data-percentage="40"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
                                 <span class="skill-name">Python</span>
-                                <span class="skill-percentage">75%</span>
+                                <span class="skill-percentage">45%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percentage="75"></div>
+                                <div class="skill-progress" data-percentage="45"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
                                 <span class="skill-name">Node</span>
-                                <span class="skill-percentage">65%</span>
+                                <span class="skill-percentage">35%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percentage="65"></div>
+                                <div class="skill-progress" data-percentage="35"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
                                 <span class="skill-name">React</span>
-                                <span class="skill-percentage">65%</span>
+                                <span class="skill-percentage">40%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percentage="65"></div>
+                                <div class="skill-progress" data-percentage="40"></div>
                             </div>
                         </div>
                         
                         <div class="skill-item">
                             <div class="skill-info">
                                 <span class="skill-name">MySQL</span>
-                                <span class="skill-percentage">65%</span>
+                                <span class="skill-percentage">40%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percentage="65"></div>
+                                <div class="skill-progress" data-percentage="40"></div>
                             </div>
                         </div>
                         
                         <div class="skill-item">
                             <div class="skill-info">
                                 <span class="skill-name">Git & GitHub</span>
-                                <span class="skill-percentage">80%</span>
+                                <span class="skill-percentage">55%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percentage="80"></div>
+                                <div class="skill-progress" data-percentage="55"></div>
                             </div>
                         </div>
                         
                         <div class="skill-item">
                             <div class="skill-info">
                                 <span class="skill-name">Bootstrap</span>
-                                <span class="skill-percentage">85%</span>
+                                <span class="skill-percentage">60%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percentage="85"></div>
+                                <div class="skill-progress" data-percentage="60"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
                                 <span class="skill-name">WordPress</span>
-                                <span class="skill-percentage">80%</span>
+                                <span class="skill-percentage">50%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percentage="80"></div>
+                                <div class="skill-progress" data-percentage="50"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
                                 <span class="skill-name">Prestashop</span>
-                                <span class="skill-percentage">75%</span>
+                                <span class="skill-percentage">45%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percentage="75"></div>
+                                <div class="skill-progress" data-percentage="45"></div>
                             </div>
                         </div>
                     </div>
