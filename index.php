@@ -261,46 +261,46 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                                 <div class="skill-progress" data-percentage="45"></div>
                             </div>                        </div>
                     </div>
-                </div>
-                
-                <!-- Habilidades Sociales - Fuera del grid anterior -->
-                <div class="soft-skills">
-                    <h3><i class="fas fa-users"></i> Habilidades Sociales</h3>
-                    <div class="soft-skills-grid">
-                        <div class="soft-skill-item">
-                            <i class="fas fa-lightbulb"></i>
-                            <h4>Aprendizaje Rápido</h4>
-                            <p>Capacidad para asimilar nuevas tecnologías y conceptos</p>
-                        </div>
-                        
-                        <div class="soft-skill-item">
-                            <i class="fas fa-users-cog"></i>
-                            <h4>Trabajo en Equipo</h4>
-                            <p>Colaboración efectiva con otros desarrolladores</p>
-                        </div>
-                        
-                        <div class="soft-skill-item">
-                            <i class="fas fa-search"></i>
-                            <h4>Resolución de Problemas</h4>
-                            <p>Análisis lógico y búsqueda de soluciones creativas</p>
-                        </div>
-                        
-                        <div class="soft-skill-item">
-                            <i class="fas fa-comments"></i>
-                            <h4>Comunicación</h4>
-                            <p>Habilidad para explicar conceptos técnicos claramente</p>
-                        </div>
-                        
-                        <div class="soft-skill-item">
-                            <i class="fas fa-clock"></i>
-                            <h4>Gestión del Tiempo</h4>
-                            <p>Organización eficiente de tareas y proyectos</p>
-                        </div>
-                        
-                        <div class="soft-skill-item">
-                            <i class="fas fa-heart"></i>
-                            <h4>Pasión por el Código</h4>
-                            <p>Motivación genuina por el desarrollo web</p>
+                    
+                    <!-- Habilidades Sociales -->
+                    <div class="soft-skills">
+                        <h3><i class="fas fa-users"></i> Habilidades Sociales</h3>
+                        <div class="soft-skills-grid">
+                            <div class="soft-skill-item">
+                                <i class="fas fa-lightbulb"></i>
+                                <h4>Aprendizaje Rápido</h4>
+                                <p>Capacidad para asimilar nuevas tecnologías y conceptos</p>
+                            </div>
+                            
+                            <div class="soft-skill-item">
+                                <i class="fas fa-users-cog"></i>
+                                <h4>Trabajo en Equipo</h4>
+                                <p>Colaboración efectiva con otros desarrolladores</p>
+                            </div>
+                            
+                            <div class="soft-skill-item">
+                                <i class="fas fa-search"></i>
+                                <h4>Resolución de Problemas</h4>
+                                <p>Análisis lógico y búsqueda de soluciones creativas</p>
+                            </div>
+                            
+                            <div class="soft-skill-item">
+                                <i class="fas fa-comments"></i>
+                                <h4>Comunicación</h4>
+                                <p>Habilidad para explicar conceptos técnicos claramente</p>
+                            </div>
+                            
+                            <div class="soft-skill-item">
+                                <i class="fas fa-clock"></i>
+                                <h4>Gestión del Tiempo</h4>
+                                <p>Organización eficiente de tareas y proyectos</p>
+                            </div>
+                            
+                            <div class="soft-skill-item">
+                                <i class="fas fa-heart"></i>
+                                <h4>Pasión por el Código</h4>
+                                <p>Motivación genuina por el desarrollo web</p>
+                            </div>
                         </div>
                     </div>
                 </div>
