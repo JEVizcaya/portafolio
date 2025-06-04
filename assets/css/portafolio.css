@@ -1074,11 +1074,30 @@ p {
         width: 100%;
         max-width: 100%;
         margin-bottom: var(--space-xl);
+        text-align: center;
+    }
+    
+    /* Centrar títulos de secciones en móvil */
+    .technical-skills h3,
+    .soft-skills h3 {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    /* Centrar contenido de AI support */
+    .ai-support-header {
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .ai-support-description {
+        text-align: center;
     }
     
     /* Mejoras específicas para skill bars en móvil */
     .skill-item {
         margin-bottom: var(--space-md);
+        text-align: left; /* Mantener skill bars alineados a la izquierda para mejor legibilidad */
     }
     
     .skill-bar {
@@ -1096,6 +1115,12 @@ p {
     
     .soft-skills-grid {
         grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    /* Asegurar que soft-skill-items estén centrados */
+    .soft-skill-item {
+        text-align: center;
     }
 }
 
@@ -1714,6 +1739,82 @@ p {
     }
 }
 
+/* ============================================================================
+   RESPONSIVE DESIGN - ABOUT SECTION
+   ============================================================================ */
+
+/* Tablet and mobile responsive design for about section */
+@media (max-width: 1024px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+        text-align: center;
+    }
+    
+    .about-text {
+        order: 1;
+    }
+    
+    .about-image {
+        order: 2;
+        margin-top: var(--space-lg);
+    }
+}
+
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        text-align: center;
+    }
+    
+    .about-text h3 {
+        text-align: center;
+        margin-bottom: var(--space-md);
+        font-size: 1.5em;
+    }
+    
+    .about-text p {
+        text-align: center;
+        line-height: 1.7;
+        margin-bottom: var(--space-md);
+        max-width: 100%;
+        padding: 0 var(--space-sm);
+    }
+    
+    .about-stats {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+        margin-top: var(--space-lg);
+    }
+    
+    .stat-item {
+        text-align: center;
+        padding: var(--space-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .about-text h3 {
+        font-size: 1.3em;
+        margin-bottom: var(--space-sm);
+    }
+    
+    .about-text p {
+        font-size: 0.95em;
+        line-height: 1.6;
+        padding: 0 var(--space-xs);
+        margin-bottom: var(--space-sm);
+    }
+    
+    .about-stats {
+        margin-top: var(--space-md);
+    }
+    
+    .stat-item {
+        padding: var(--space-sm);
+    }
+}
 .logo {
     font-size: 1.8rem;
     font-weight: var(--font-weight-bold);

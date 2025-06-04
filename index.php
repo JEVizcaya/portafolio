@@ -259,10 +259,11 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-percentage="45"></div>
-                            </div>
-                        </div>
+                            </div>                        </div>
                     </div>
-                    <!-- Habilidades Sociales - Debajo de ambas -->
+                </div>
+                
+                <!-- Habilidades Sociales - Fuera del grid anterior -->
                 <div class="soft-skills">
                     <h3><i class="fas fa-users"></i> Habilidades Sociales</h3>
                     <div class="soft-skills-grid">
@@ -302,9 +303,6 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                             <p>Motivación genuina por el desarrollo web</p>
                         </div>
                     </div>
-                </div>
-                    
-                    
                 </div>
                 
                 
