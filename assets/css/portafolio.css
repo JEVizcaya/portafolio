@@ -1895,11 +1895,10 @@ p {
     height: 50px;
     background: var(--gradient-gold);
     border: none;
-    border-radius: 50%;
-    color: var(--primary-color);
+    border-radius: 50%;    color: var(--primary-color);
     font-size: 1.2rem;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 998;
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px) scale(0.8);
@@ -1976,4 +1975,11 @@ p {
     body.menu-open .chat-toggle {
         display: none !important;
     }
+}
+
+/* Ocultar el botón de volver arriba cuando el menú móvil está abierto */
+body.menu-open .scroll-to-top {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
 }

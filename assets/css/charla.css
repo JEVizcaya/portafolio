@@ -592,6 +592,13 @@ body.chat-open-mobile {
     overflow: hidden;
 }
 
+/* Permitir scroll solo dentro del chat */
+body.chat-open-mobile .chat-messages {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
 /* Overlay para cerrar chat en móviles */
 .chat-overlay {
     position: fixed;

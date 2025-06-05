@@ -4,8 +4,7 @@
  * al cerrar la pestaña o reiniciar el navegador.
  */
 
-class PortfolioChat {
-    constructor() {
+class PortfolioChat {    constructor() {
         this.chatContainer = null;
         this.chatToggle = null;
         this.chatMessages = null;
@@ -15,6 +14,7 @@ class PortfolioChat {
         this.isOpen = false;
         this.isProcessing = false;
         this.messageHistory = [];
+        this.savedScrollPosition = undefined;
         
         this.init();
     }
@@ -167,11 +167,14 @@ class PortfolioChat {
                 // El navegador manejará automáticamente el scroll del contenido
             });
         }
-        
-        // Manejar touch events en móviles para mejor UX
+          // Manejar touch events en móviles para mejor UX
         if ('ontouchstart' in window) {
             this.setupTouchEvents();
-        }    }
+        }
+        
+        // Prevenir scroll del body en mobile cuando el chat esté abierto
+        this.preventBodyScroll();
+    }
     
     isMobileDevice() {
         return window.innerWidth <= 768;
@@ -187,9 +190,9 @@ class PortfolioChat {
         console.log('Opening chat...');
         if (this.chatContainer) {
             const body = document.body;
+            
             // Mostrar overlay en móviles y prevenir scroll
-            if (this.isMobileDevice()) {
-                this.showChatOverlay();
+            if (this.isMobileDevice()) {                this.showChatOverlay();
                 body.classList.add('chat-open-mobile');
             }
             
@@ -217,17 +220,15 @@ class PortfolioChat {
         } else {
             console.error('Chat container not found when trying to open');
         }
-    }    // Función mejorada para cerrar chat
+    }// Función mejorada para cerrar chat
     closeChat() {
         console.log('Closing chat...');
         if (this.chatContainer) {
-            const body = document.body;
-            // Ocultar overlay y restaurar scroll del body
-            this.hideChatOverlay();
-            
-            if (this.isMobileDevice()) {
+            const body = document.body;            // Ocultar overlay y restaurar scroll del body
+            this.hideChatOverlay();            if (this.isMobileDevice()) {
                 body.classList.remove('chat-open-mobile');
-            } else {
+                
+                                // Simplemente removemos la clase que bloquea el scroll
                 body.classList.remove('chat-open-mobile');
             }
             
@@ -606,8 +607,7 @@ class PortfolioChat {
         this.chatMessages?.addEventListener('touchmove', (e) => {
             e.stopPropagation();
         }, { passive: true });
-    }
-      handleResponsiveResize() {
+    }    handleResponsiveResize() {
         console.log('Handling responsive resize');
         const isMobile = this.isMobileDevice();
         
@@ -616,12 +616,10 @@ class PortfolioChat {
                 // En móviles, mostrar overlay y prevenir scroll
                 this.showChatOverlay();
                 document.body.classList.add('chat-open-mobile');
-                document.body.style.overflow = 'hidden';
             } else {
                 // En desktop, ocultar overlay y restaurar scroll
                 this.hideChatOverlay();
                 document.body.classList.remove('chat-open-mobile');
-                document.body.style.overflow = '';
             }
             
             // Ajustar scroll después del cambio
@@ -670,6 +668,39 @@ class PortfolioChat {
         if (this.chatOverlay) {
             this.chatOverlay.classList.remove('active');
         }
+    }
+    
+    preventBodyScroll() {
+        // Agregar listeners globales para prevenir scroll cuando el chat esté abierto en móvil
+        const preventScroll = (e) => {
+            if (this.isOpen && this.isMobileDevice()) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        };
+        
+        // Prevenir scroll en eventos del body
+        document.body.addEventListener('touchmove', preventScroll, { passive: false });
+        document.body.addEventListener('wheel', preventScroll, { passive: false });
+        document.body.addEventListener('scroll', preventScroll, { passive: false });
+        
+        // Prevenir scroll en documentos
+        document.addEventListener('touchmove', (e) => {
+            if (this.isOpen && this.isMobileDevice() && !this.chatContainer.contains(e.target)) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        }, { passive: false });
+        
+        document.addEventListener('wheel', (e) => {
+            if (this.isOpen && this.isMobileDevice() && !this.chatContainer.contains(e.target)) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        }, { passive: false });
     }
 }
 
