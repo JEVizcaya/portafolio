@@ -1,5 +1,7 @@
 /**
  * Chat con IA - Sistema de chat integrado para el portafolio de Jorge Enrique Vizcaya Vega
+ * El historial del chat se almacena en sessionStorage y se borra automáticamente 
+ * al cerrar la pestaña o reiniciar el navegador.
  */
 
 class PortfolioChat {
@@ -141,11 +143,30 @@ class PortfolioChat {
                 this.handleResponsiveResize();
             }
         });
-        
-        // Evitar scroll del body cuando el chat está abierto
+          // Evitar scroll del body cuando el chat está abierto y mejorar control de scroll
         this.chatContainer.addEventListener('wheel', (e) => {
             e.stopPropagation();
+            e.preventDefault();
+            
+            // Aplicar scroll solo al área de mensajes si existe
+            if (this.chatMessages) {
+                const delta = e.deltaY;
+                this.chatMessages.scrollTop += delta;
+            }
         });
+          // También prevenir scroll en toda el área del chat
+        this.chatContainer.addEventListener('scroll', (e) => {
+            e.stopPropagation();
+        });
+        
+        // Manejo específico del scroll en el área de mensajes
+        if (this.chatMessages) {
+            this.chatMessages.addEventListener('wheel', (e) => {
+                e.stopPropagation();
+                // Permitir scroll normal dentro del área de mensajes
+                // El navegador manejará automáticamente el scroll del contenido
+            });
+        }
         
         // Manejar touch events en móviles para mejor UX
         if ('ontouchstart' in window) {
@@ -159,8 +180,7 @@ class PortfolioChat {
         } else {
             this.openChat();
         }
-    }
-      openChat() {
+    }      openChat() {
         console.log('Opening chat...');
         if (this.chatContainer) {
             // Mostrar overlay en móviles
@@ -173,6 +193,11 @@ class PortfolioChat {
             this.chatContainer.classList.add('active');
             this.isOpen = true;
             this.chatToggle.classList.remove('has-notification');
+            
+            // Ocultar el botón del chat cuando se abre
+            if (this.chatToggle) {
+                this.chatToggle.classList.add('hidden');
+            }
             
             console.log('Chat container classes:', this.chatContainer.className);
             
@@ -189,8 +214,7 @@ class PortfolioChat {
         } else {
             console.error('Chat container not found when trying to open');
         }
-    }
-      // Función mejorada para cerrar chat
+    }      // Función mejorada para cerrar chat
     closeChat() {
         console.log('Closing chat...');
         if (this.chatContainer) {
@@ -202,13 +226,18 @@ class PortfolioChat {
             this.chatContainer.classList.remove('active');
             this.isOpen = false;
             
+            // Mostrar el botón del chat cuando se cierra
+            if (this.chatToggle) {
+                this.chatToggle.classList.remove('hidden');
+            }
+            
             // Desenfocar el input para ocultar teclado en móviles
             if (this.chatInput) {
                 this.chatInput.blur();
             }
             
             console.log('Chat closed, classes:', this.chatContainer.className);
-        }    }
+        }}
     
     async sendMessage() {
         console.log('sendMessage called');
@@ -352,30 +381,26 @@ class PortfolioChat {
                 this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
             }, 100);
         }
-    }
-    
-    saveChatHistory() {
+    }    saveChatHistory() {
         try {
-            localStorage.setItem('portfolio_chat_history', JSON.stringify(this.messageHistory));
+            // Usar sessionStorage para que el historial se borre al cerrar el navegador
+            sessionStorage.setItem('portfolio_chat_history', JSON.stringify(this.messageHistory));
         } catch (error) {
             console.warn('Could not save chat history:', error);
         }
-    }
-    
-    loadChatHistory() {
+    }    loadChatHistory() {
         try {
-            const history = localStorage.getItem('portfolio_chat_history');
+            // Cargar historial de sessionStorage (se borra al cerrar navegador)
+            const history = sessionStorage.getItem('portfolio_chat_history');
             if (history) {
                 this.messageHistory = JSON.parse(history);
-                this.renderChatHistory();
-            } else {
+                this.renderChatHistory();            } else {
                 // Mensaje de bienvenida
-                this.addMessage('¡Hola! 👋 Soy el asistente virtual de Jorge Enrique Vizcaya Vega. Puedo ayudarte con información sobre sus proyectos, experiencia, habilidades técnicas y más. ¿En qué puedo ayudarte hoy?', 'bot');
-            }
-        } catch (error) {
+                this.addMessage('¡Hola! 👋 Soy el asistente virtual de Jorge Enrique Vizcaya Vega. ¿En qué puedo ayudarte?', 'bot');
+            }        } catch (error) {
             console.warn('Could not load chat history:', error);
             // Mensaje de bienvenida por defecto si hay error
-            this.addMessage('¡Hola! 👋 Soy el asistente virtual de Jorge Enrique Vizcaya Vega. Puedo ayudarte con información sobre sus proyectos, experiencia, habilidades técnicas y más. ¿En qué puedo ayudarte hoy?', 'bot');
+            this.addMessage('¡Hola! 👋 Soy el asistente virtual de Jorge Enrique Vizcaya Vega. ¿En qué puedo ayudarte?', 'bot');
         }
     }
     
@@ -389,24 +414,47 @@ class PortfolioChat {
             
             this.scrollToBottom();
         }
-    }
-    
-    addMessageToDOM(content, type, timestamp) {
+    }    addMessageToDOM(content, type, timestamp) {
         if (!this.chatMessages) return;
         
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${type}-message`;
         
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'message-content';
-        contentDiv.innerHTML = this.formatMessage(content);
-        
-        const timeDiv = document.createElement('div');
-        timeDiv.className = 'message-time';
-        timeDiv.textContent = this.formatTime(timestamp);
-        
-        messageDiv.appendChild(contentDiv);
-        messageDiv.appendChild(timeDiv);
+        // Add caricature image for bot messages
+        if (type === 'bot') {
+            const avatarDiv = document.createElement('div');
+            avatarDiv.className = 'message-avatar';
+            avatarDiv.innerHTML = '<img src="assets/img/caricatura.png" alt="Jorge Enrique Vizcaya" class="message-avatar-img">';
+            messageDiv.appendChild(avatarDiv);
+            
+            // Create a wrapper for content and time for bot messages
+            const messageWrapper = document.createElement('div');
+            messageWrapper.className = 'message-wrapper';
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.innerHTML = this.formatMessage(content);
+            
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            timeDiv.textContent = this.formatTime(timestamp);
+            
+            messageWrapper.appendChild(contentDiv);
+            messageWrapper.appendChild(timeDiv);
+            messageDiv.appendChild(messageWrapper);
+        } else {
+            // User messages keep the original structure
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.innerHTML = this.formatMessage(content);
+            
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            timeDiv.textContent = this.formatTime(timestamp);
+            
+            messageDiv.appendChild(contentDiv);
+            messageDiv.appendChild(timeDiv);
+        }
         
         this.chatMessages.appendChild(messageDiv);
     }
@@ -476,37 +524,72 @@ class PortfolioChat {
         a.download = 'chat_history.json';
         a.click();
         URL.revokeObjectURL(url);
-    }
-      setupTouchEvents() {
+    }    setupTouchEvents() {
         if (!this.chatContainer) return;
         
         let touchStartY = 0;
         let touchEndY = 0;
         let touchStartX = 0;
         let touchEndX = 0;
+        let touchStartTime = 0;
+        let isScrolling = false;
         
         // Manejar swipe gestures para cerrar en móviles
         this.chatContainer.addEventListener('touchstart', (e) => {
+            // Solo activar swipe si NO estamos en el área de mensajes
+            if (this.chatMessages && this.chatMessages.contains(e.target)) {
+                return;
+            }
+            
             const touch = e.changedTouches[0];
             touchStartY = touch.screenY;
             touchStartX = touch.screenX;
+            touchStartTime = Date.now();
+            isScrolling = false;
+        }, { passive: true });
+        
+        this.chatContainer.addEventListener('touchmove', (e) => {
+            // Detectar si es un scroll (movimiento continuo)
+            if (this.chatMessages && this.chatMessages.contains(e.target)) {
+                isScrolling = true;
+                return;
+            }
+            
+            // Marcar como scroll si hay mucho movimiento vertical
+            const touch = e.changedTouches[0];
+            const currentY = touch.screenY;
+            if (Math.abs(currentY - touchStartY) > 10) {
+                isScrolling = true;
+            }
         }, { passive: true });
         
         this.chatContainer.addEventListener('touchend', (e) => {
+            // No cerrar si estamos en el área de mensajes o si fue un scroll
+            if ((this.chatMessages && this.chatMessages.contains(e.target)) || isScrolling) {
+                return;
+            }
+            
             const touch = e.changedTouches[0];
             touchEndY = touch.screenY;
             touchEndX = touch.screenX;
+            const touchDuration = Date.now() - touchStartTime;
             
             const swipeDistanceY = touchStartY - touchEndY;
             const swipeDistanceX = touchStartX - touchEndX;
             
-            // Swipe hacia abajo (más de 100px) para cerrar
-            if (swipeDistanceY < -100 && Math.abs(swipeDistanceX) < 50 && this.isOpen) {
+            // Swipe hacia abajo (más de 150px, rápido) para cerrar
+            if (swipeDistanceY < -150 && 
+                Math.abs(swipeDistanceX) < 100 && 
+                touchDuration < 1000 && 
+                this.isOpen) {
                 this.closeChat();
             }
             
-            // Swipe hacia la derecha (más de 150px) para cerrar
-            if (swipeDistanceX < -150 && Math.abs(swipeDistanceY) < 100 && this.isOpen) {
+            // Swipe hacia la derecha (más de 200px, rápido) para cerrar
+            if (swipeDistanceX < -200 && 
+                Math.abs(swipeDistanceY) < 150 && 
+                touchDuration < 1000 && 
+                this.isOpen) {
                 this.closeChat();
             }
         }, { passive: true });

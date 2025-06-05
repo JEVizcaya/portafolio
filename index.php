@@ -317,7 +317,8 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                 <h2>Mis Proyectos</h2>
                 <p>Proyectos desarrollados durante mi formación y práctica personal</p>
             </div>
-            <div class="projects-grid">                <!-- Proyecto 1 -->
+            <div class="projects-grid">                
+                <!-- Proyecto 1 -->
                  <div class="project-card">
                     <div class="project-icon">
                         <i class="fas fa-futbol"></i>
@@ -335,7 +336,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     <div class="project-links">
                         <a href="https://jorgevizcaya.pythonanywhere.com/" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
-                            Ver Demo
+                            Ver Proyecto
                         </a>
                         <a href="https://github.com/JEVizcaya/pythonanywhere" class="project-link">
                             <i class="fab fa-github"></i>
@@ -361,7 +362,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     <div class="project-links">
                         <a href="https://devflow-je.web.app/" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
-                            Ver Demo
+                            Ver Proyecto
                         </a>
                         <a href="https://github.com/JEVizcaya/devflow" class="project-link">
                             <i class="fab fa-github"></i>
@@ -386,7 +387,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     <div class="project-links">
                         <a href="https://prestashop2025.lovestoblog.com/" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
-                            Ver Demo
+                            Ver Proyecto
                         </a>
                         <a href="https://github.com/JEVizcaya/basemvcphp" class="project-link">
                             <i class="fab fa-github"></i>
@@ -412,7 +413,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     <div class="project-links">
                         <a href="https://jorgevizcaya.wuaze.com/" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
-                            Ver Demo
+                            Ver Proyecto
                         </a>
                         
                     </div>
@@ -438,7 +439,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     <div class="project-links">
                         <a href="https://jevizcaya.github.io/frontblog/" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
-                            Ver Demo
+                            Ver Proyecto
                         </a>
                         <a href="https://github.com/JEVizcaya/frontblog" class="project-link">
                             <i class="fab fa-github"></i>
@@ -465,7 +466,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                     <div class="project-links">
                         <a href="http://tiendajevv.rf.gd/" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
-                            Ver Demo
+                            Ver Proyecto
                         </a>
                         
                     </div>
@@ -608,16 +609,14 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                 <!-- ...existing code continues... -->
             </div>
         </div>    </section>    <!-- Chat Flotante -->
-    <div id="chat-overlay" class="chat-overlay"></div>
-    <div id="chat-toggle" class="chat-toggle" title="Chatear con IA sobre Jorge">
-        <i class="fas fa-comments"></i>
+    <div id="chat-overlay" class="chat-overlay"></div>    <div id="chat-toggle" class="chat-toggle" title="Chatear con IA sobre Jorge">
+        <img src="assets/img/caricatura.png" alt="Chat con Jorge" class="chat-toggle-img">
     </div>
 
     <div id="chat-container" class="chat-container">
         <div class="chat-header">
-            <div class="chat-header-content">
-                <div class="chat-avatar">
-                    <i class="fas fa-robot"></i>
+            <div class="chat-header-content">                <div class="chat-avatar">
+                    <img src="assets/img/caricatura.png" alt="Jorge Enrique Vizcaya" class="chat-avatar-img">
                 </div>
                 <div class="chat-info">
                     <h4>Asistente IA</h4>
@@ -628,21 +627,15 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        
-        <div class="chat-messages" id="chat-messages">
-            <div class="message bot-message">
-                <div class="message-content">
-                    <p>¡Hola! 👋 Soy el asistente IA de Jorge Enrique Vizcaya Vega. Puedo ayudarte con información sobre sus proyectos, habilidades, experiencia y formación profesional. ¿En qué puedo ayudarte?</p>
-                </div>
-                <div class="message-time"></div>
-            </div>
+          <div class="chat-messages" id="chat-messages">
+            <!-- Los mensajes se cargarán dinámicamente por JavaScript -->
         </div>
         
         <div class="chat-input-container">
             <div class="chat-input-wrapper">
                 <textarea 
                     id="chat-input" 
-                    placeholder="Pregúntame sobre Jorge, sus proyectos o habilidades..."
+                    placeholder="Escribe tu consulta aquí..." 
                     rows="1"
                     maxlength="1000"
                 ></textarea>

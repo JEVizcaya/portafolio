@@ -9,7 +9,7 @@
     height: 65px;
     background: linear-gradient(45deg, #ffd700, #ffed4e);
     border-radius: 50%;
-    display: flex !important;
+    display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -33,6 +33,42 @@
     font-size: 26px;
     color: #1a1a1a;
     font-weight: bold;
+}
+
+/* Estilo para la imagen del chat toggle */
+.chat-toggle-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: contain;
+    object-position: center;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
+    image-rendering: crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    /* Asegurar que la imagen se cargue correctamente */
+    display: block;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2px;
+}
+
+.chat-toggle:hover .chat-toggle-img {
+    transform: scale(1.1);
+}
+
+/* Fallback en caso de que la imagen no cargue */
+.chat-toggle-img:not([src]), .chat-toggle-img[src=""] {
+    background: #1a1a1a;
+    position: relative;
+}
+
+.chat-toggle-img:not([src])::before, .chat-toggle-img[src=""]::before {
+    content: "💬";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
 }
 
 /* Animación de pulso para llamar la atención */
@@ -66,6 +102,14 @@
 
 .chat-toggle.has-notification::after {
     opacity: 1;
+}
+
+/* Clase para ocultar el botón del chat */
+.chat-toggle.hidden {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
 }
 
 @keyframes bounce {
@@ -109,10 +153,23 @@
     backdrop-filter: blur(10px);
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0.95;
+    overscroll-behavior: contain;
 }
 
 .chat-container.active {
     right: 105px;
+}
+
+/* Hacer el chat más ancho en escritorio y más pegado al borde */
+@media (min-width: 1024px) {
+    .chat-container {
+        width: 450px;
+        right: -480px;
+    }
+    
+    .chat-container.active {
+        right: 15px !important;
+    }
 }
 
 /* Animación eliminada - ahora usamos transition CSS */
@@ -148,10 +205,44 @@
     font-size: 18px;
 }
 
+/* Estilo para la imagen del chat avatar */
+.chat-avatar-img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: contain;
+    object-position: center;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
+    image-rendering: crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    /* Asegurar que la imagen se cargue correctamente */
+    display: block;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1px;
+}
+
+/* Fallback en caso de que la imagen no cargue */
+.chat-avatar-img:not([src]), .chat-avatar-img[src=""] {
+    background: #1a1a1a;
+    position: relative;
+}
+
+.chat-avatar-img:not([src])::before, .chat-avatar-img[src=""]::before {
+    content: "🤖";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+}
+
 .chat-info h4 {
     margin: 0;
     font-size: 16px;
     font-weight: 600;
+    
+
 }
 
 .chat-status {
@@ -183,6 +274,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    overscroll-behavior: contain;
 }
 
 .chat-messages::-webkit-scrollbar {
@@ -210,22 +302,9 @@
 
 .user-message .message-content {
     background: linear-gradient(135deg, #ffd700, #ffed4e);
-    color: #1a1a1a;
-    padding: 12px 16px;
+    color: #1a1a1a;    padding: 12px 16px;
     border-radius: 18px 18px 6px 18px;
     font-weight: 500;
-}
-
-.bot-message {
-    align-self: flex-start;
-}
-
-.bot-message .message-content {
-    background: #2a2a2a;
-    color: #e0e0e0;
-    padding: 12px 16px;
-    border-radius: 18px 18px 18px 6px;
-    border-left: 3px solid #ffd700;
 }
 
 .message-time {
@@ -239,6 +318,53 @@
     text-align: left;
 }
 
+/* Message avatar for bot messages */
+.message-avatar {
+    margin-right: 8px;
+    margin-bottom: 4px;
+}
+
+.message-avatar-img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: contain;
+    object-position: center;
+    background: #fff;
+    padding: 2px;
+    border: 2px solid #ffd700;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.message-avatar-img:hover {
+    transform: scale(1.1);
+}
+
+/* Update bot message layout for avatar */
+.bot-message {
+    align-self: flex-start;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    max-width: 85%;
+}
+
+.message-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.bot-message .message-content {
+    background: #2a2a2a;
+    color: #e0e0e0;
+    padding: 12px 16px;
+    border-radius: 18px 18px 18px 6px;
+    border-left: 3px solid #ffd700;
+    flex: 1;
+}
+
 /* Área de entrada */
 .chat-input-container {
     background: #1e1e1e;
@@ -248,7 +374,7 @@
 
 .chat-input-wrapper {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     gap: 10px;
     background: #2a2a2a;
     border-radius: 25px;
@@ -375,9 +501,14 @@
         transform: scale(1.1);
         box-shadow: 0 6px 25px rgba(255, 215, 0, 0.7);
     }
-    
-    .chat-toggle i {
+      .chat-toggle i {
         font-size: 24px;
+    }
+      /* Responsive para imagen del chat toggle */
+    .chat-toggle-img {
+        width: 36px;
+        height: 36px;
+        padding: 2px;
     }
     
     /* Evitar interferencia con otros elementos */
@@ -409,21 +540,56 @@
         height: 55px;
         box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
     }
-    
-    .chat-toggle i {
+      .chat-toggle i {
         font-size: 22px;
     }
-    
-    .chat-header {
+      /* Responsive para imagen del chat toggle en pantallas pequeñas */
+    .chat-toggle-img {
+        width: 34px;
+        height: 34px;
+        padding: 1px;
+    }
+      .chat-header {
         padding: 12px 15px;
+    }    
+    /* Responsive para imagen del chat avatar */
+    .chat-avatar-img {
+        width: 34px;
+        height: 34px;
+        padding: 1px;
+    }
+    
+    /* Responsive para avatar de mensajes */
+    .message-avatar-img {
+        width: 24px;
+        height: 24px;
+        padding: 1px;
+        border-width: 1px;
+    }
+    
+    .message-avatar {
+        margin-right: 6px;
+        margin-bottom: 2px;
     }
     
     .chat-messages {
         padding: 15px;
     }
-    
-    .chat-input-container {
+      .chat-input-container {
         padding: 12px 15px;
+    }
+    
+    /* Responsive para avatar de mensajes en pantallas muy pequeñas */
+    .message-avatar-img {
+        width: 22px;
+        height: 22px;
+        padding: 1px;
+        border-width: 1px;
+    }
+    
+    .message-avatar {
+        margin-right: 4px;
+        margin-bottom: 2px;
     }
 }
 
