@@ -184,16 +184,26 @@ function initializeNavigation() {
             toggleMobileMenu();
         }
     });
-    
-    // Navbar scroll effect
+      // Navbar scroll effect
     window.addEventListener('scroll', handleNavbarScroll);
+    
+    // Handle window resize to reset chat visibility
+    window.addEventListener('resize', () => {
+        const chatToggle = document.getElementById('chat-toggle') || document.querySelector('.chat-toggle');
+        if (chatToggle && window.innerWidth > 768) {
+            // En desktop, asegurar que el chat esté visible
+            chatToggle.style.opacity = '1';
+            chatToggle.style.visibility = 'visible';
+            chatToggle.style.pointerEvents = 'auto';
+            chatToggle.style.transform = 'scale(1)';
+        }
+    });
     
     // Initial active state
     updateActiveNavLink();
 }
 
-function toggleMobileMenu(e) {
-    // Prevenir cualquier comportamiento por defecto
+function toggleMobileMenu(e) {    // Prevenir cualquier comportamiento por defecto
     if (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -202,6 +212,34 @@ function toggleMobileMenu(e) {
     elements.hamburger?.classList.toggle('active');
     elements.mobileMenu?.classList.toggle('active');
     document.body.classList.toggle('menu-open');
+    
+    // Ocultar/mostrar el botón del chat cuando se abre/cierra el menú móvil
+    const chatToggle = document.getElementById('chat-toggle') || document.querySelector('.chat-toggle');
+    const isMenuOpen = document.body.classList.contains('menu-open');
+    
+    if (chatToggle) {
+        if (isMenuOpen) {
+            // Ocultar el chat
+            chatToggle.style.opacity = '0';
+            chatToggle.style.visibility = 'hidden';
+            chatToggle.style.pointerEvents = 'none';
+            chatToggle.style.transform = 'scale(0.1)';
+            chatToggle.style.transition = 'all 0.3s ease';
+        } else {
+            // Mostrar el chat
+            chatToggle.style.opacity = '1';
+            chatToggle.style.visibility = 'visible';
+            chatToggle.style.pointerEvents = 'auto';
+            chatToggle.style.transform = 'scale(1)';
+            chatToggle.style.transition = 'all 0.3s ease';
+        }
+    }
+    
+    // Debug temporal - remover después
+    console.log('Menu toggle - body classes:', document.body.className);
+    console.log('Mobile menu active:', elements.mobileMenu?.classList.contains('active'));
+    console.log('Chat toggle found:', !!chatToggle);
+    console.log('Chat toggle visibility:', chatToggle?.style.visibility);
 }
 
 function handleNavClick(e) {

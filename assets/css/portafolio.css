@@ -1959,3 +1959,26 @@ p {
         font-size: 1rem;
     }
 }
+
+/* ===== CHAT OVERRIDES - DEBE IR AL FINAL ===== */
+/* Ocultar el botón del chat cuando el menú móvil está activo */
+@media (max-width: 768px) {
+    /* Selector más específico para asegurar que funcione */
+    body.menu-open #chat-toggle,
+    body.menu-open .chat-toggle {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        transform: scale(0.1) !important;
+        transition: all 0.3s ease !important;
+        z-index: -1 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* También para pantallas muy pequeñas */
+    body.menu-open #chat-toggle,
+    body.menu-open .chat-toggle {
+        display: none !important;
+    }
+}

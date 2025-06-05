@@ -472,13 +472,12 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .chat-container {
+@media (max-width: 768px) {    .chat-container {
         width: calc(100vw - 30px);
         height: calc(100vh - 160px);
         right: -100vw;
         left: auto;
-        top: 80px;
+        top: 120px;
         max-width: none;
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -488,9 +487,8 @@
     .chat-container.active {
         right: 15px;
     }
-    
-    .chat-toggle {
-        top: 120px;
+      .chat-toggle {
+        top: 160px;
         right: 15px;
         width: 60px;
         height: 60px;
@@ -519,11 +517,10 @@
 
 @media (max-width: 480px) {
     .chat-container {
-        width: calc(100vw - 20px);
-        height: calc(100vh - 140px);
+        width: calc(100vw - 20px);        height: calc(100vh - 140px);
         right: -100vw;
         left: auto;
-        top: 60px;
+        top: 100px;
         border-radius: 15px;
         max-height: none;
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -532,9 +529,8 @@
     .chat-container.active {
         right: 10px;
     }
-    
-    .chat-toggle {
-        top: 100px;
+      .chat-toggle {
+        top: 140px;
         right: 15px;
         width: 55px;
         height: 55px;
@@ -736,5 +732,26 @@ body.chat-open-mobile {
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+}
+
+/* Ocultar el botón del chat cuando el menú móvil está activo */
+@media (max-width: 768px) {
+    /* Ocultar cuando el menú móvil está activo usando la clase del body */
+    body.menu-open .chat-toggle {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        transition: all 0.3s ease !important;
+        transform: scale(0) !important;
+    }
+    
+    /* También ocultar cuando el menú móvil tiene clase active */
+    .mobile-menu.active ~ .chat-toggle {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        transition: all 0.3s ease !important;
+        transform: scale(0) !important;
     }
 }
