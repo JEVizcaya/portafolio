@@ -171,7 +171,10 @@ class PortfolioChat {
         // Manejar touch events en móviles para mejor UX
         if ('ontouchstart' in window) {
             this.setupTouchEvents();
-        }
+        }    }
+    
+    isMobileDevice() {
+        return window.innerWidth <= 768;
     }
       toggleChat() {
         console.log('Toggle chat called, current state:', this.isOpen);
@@ -180,14 +183,14 @@ class PortfolioChat {
         } else {
             this.openChat();
         }
-    }      openChat() {
+    }    openChat() {
         console.log('Opening chat...');
         if (this.chatContainer) {
-            // Mostrar overlay en móviles
+            const body = document.body;
+            // Mostrar overlay en móviles y prevenir scroll
             if (this.isMobileDevice()) {
                 this.showChatOverlay();
-                document.body.classList.add('chat-open-mobile');
-                document.body.style.overflow = 'hidden';
+                body.classList.add('chat-open-mobile');
             }
             
             this.chatContainer.classList.add('active');
@@ -214,14 +217,19 @@ class PortfolioChat {
         } else {
             console.error('Chat container not found when trying to open');
         }
-    }      // Función mejorada para cerrar chat
+    }    // Función mejorada para cerrar chat
     closeChat() {
         console.log('Closing chat...');
         if (this.chatContainer) {
+            const body = document.body;
             // Ocultar overlay y restaurar scroll del body
             this.hideChatOverlay();
-            document.body.classList.remove('chat-open-mobile');
-            document.body.style.overflow = '';
+            
+            if (this.isMobileDevice()) {
+                body.classList.remove('chat-open-mobile');
+            } else {
+                body.classList.remove('chat-open-mobile');
+            }
             
             this.chatContainer.classList.remove('active');
             this.isOpen = false;

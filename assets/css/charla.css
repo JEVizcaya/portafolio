@@ -483,12 +483,11 @@
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         border-radius: 20px 20px 0 0;
     }
-    
-    .chat-container.active {
+      .chat-container.active {
         right: 15px;
     }
       .chat-toggle {
-        top: 160px;
+        top: 140px;
         right: 15px;
         width: 60px;
         height: 60px;
@@ -525,12 +524,11 @@
         max-height: none;
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
-    .chat-container.active {
+      .chat-container.active {
         right: 10px;
     }
       .chat-toggle {
-        top: 140px;
+        top: 120px;
         right: 15px;
         width: 55px;
         height: 55px;
@@ -592,7 +590,6 @@
 /* Prevenir scroll del body cuando el chat está abierto en móviles */
 body.chat-open-mobile {
     overflow: hidden;
-    height: 100vh;
 }
 
 /* Overlay para cerrar chat en móviles */

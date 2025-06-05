@@ -425,14 +425,9 @@ p {
         background: var(--gradient-gold);
         color: var(--primary-color);
         transform: scale(1.02);
-    }
-
-    /* Prevenir scroll en el body cuando el menú está abierto */
+    }    /* Prevenir scroll en el body cuando el menú está abierto */
     body.menu-open {
         overflow: hidden;
-        position: fixed;
-        width: 100%;
-        height: 100%;
     }
 }
 
