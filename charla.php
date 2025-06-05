@@ -91,25 +91,25 @@ Todas desarrolladas con ayuda de herramientas de IA:
 1. **CeltaFan** (Portal para aficionados del Celta de Vigo)
    - Tecnologías: Python, Django, SQLite
    - Funcionalidades: Noticias, resultados, plantilla, próximos partidos
-   - Demo: https://jorgevizcaya.pythonanywhere.com/
+   - Proyecto: https://jorgevizcaya.pythonanywhere.com/
    - Código: https://github.com/JEVizcaya/pythonanywhere
 
 2. **Gestor de Proyectos** (Aplicación web para gestión de proyectos)
    - Tecnologías: PHP, React, JavaScript
    - Funcionalidades: CRUD, asignación de tareas, interfaz intuitiva
-   - Demo: https://devflow-je.web.app/
+   - Proyecto: https://devflow-je.web.app/
    - Código: https://github.com/JEVizcaya/devflow
 
 3. **Plantilla MVC + IA** (Aplicación web con patrón MVC e IA)
    - Tecnologías: PHP, JavaScript, CSS
    - Funcionalidades: IA integrada, gestión de usuarios, interfaz amigable
-   - Demo: https://prestashop2025.lovestoblog.com/
+   - Proyecto: https://prestashop2025.lovestoblog.com/
    - Código: https://github.com/JEVizcaya/basemvcphp
 
 4. **Proyecto WordPress** (Sitio web de taller mecánico)
    - Tecnologías: PHP, JavaScript, CSS3
    - Funcionalidades: Servicios, contacto, ubicación
-   - Demo: https://jorgevizcaya.wuaze.com/
+   - Proyecto: https://jorgevizcaya.wuaze.com/
 
 5. **Blog Personal** (Blog con React + Node + Postgres)
    - Tecnologías: React, Vite, JavaScript, MySQL
@@ -120,7 +120,7 @@ Todas desarrolladas con ayuda de herramientas de IA:
 6. **E-Commerce Simple** (Tienda online básica)
    - Tecnologías: PrestaShop, MySQL, CSS3
    - Funcionalidades: Carrito de compras, gestión de productos, panel admin
-   - Demo: http://tiendajevv.rf.gd/
+   - Proyecto: http://tiendajevv.rf.gd/
 
 === OBJETIVO PROFESIONAL ===
 Jorge está buscando una oportunidad profesional como desarrollador web. Quiere aplicar sus conocimientos en proyectos reales y seguir creciendo profesionalmente junto a un equipo experimentado.
