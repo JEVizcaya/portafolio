@@ -20,11 +20,15 @@ class PortfolioChat {    constructor() {
     }
     
     init() {
-        // Esperar a que el DOM esté cargado
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.initializeElements());
-        } else {
-            this.initializeElements();
+        // Esperar a que el DOM esté cargado y manejar posibles errores
+        try {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => this.initializeElements());
+            } else {
+                this.initializeElements();
+            }
+        } catch (error) {
+            console.error('Error inicializando el chat:', error);
         }
     }    initializeElements() {
         console.log('Initializing chat elements...');
@@ -346,12 +350,15 @@ class PortfolioChat {    constructor() {
     }
     
     formatMessage(message) {
-        // Formatear el mensaje para mostrar markdown básico
+        // Formatear el mensaje para mostrar markdown básico, usando una sola regex con callback para mejor rendimiento
         return message
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')
-            .replace(/`(.*?)`/g, '<code>$1</code>')
-            .replace(/\n/g, '<br>');
+            .replace(/(\*\*(.*?)\*\*|\*(.*?)\*|`(.*?)`|\n)/g, (match, full, bold, italic, code) => {
+                if (match === '\n') return '<br>';
+                if (bold) return `<strong>${bold}</strong>`;
+                if (italic) return `<em>${italic}</em>`;
+                if (code) return `<code>${code}</code>`;
+                return match; // fallback por si acaso
+            });
     }
     
     showTyping() {
@@ -473,15 +480,16 @@ class PortfolioChat {    constructor() {
         const messageTime = new Date(timestamp);
         const diffInMinutes = Math.floor((now - messageTime) / (1000 * 60));
         
-        if (diffInMinutes < 1) {
-            return 'Ahora';
-        } else if (diffInMinutes < 60) {
-            return `${diffInMinutes}m`;
-        } else if (diffInMinutes < 1440) {
-            return `${Math.floor(diffInMinutes / 60)}h`;
-        } else {
-            return messageTime.toLocaleDateString();
-        }
+        // Optimización con mapa de condiciones para mayor claridad y rendimiento
+        const timeFormats = [
+            { condition: () => diffInMinutes < 1, format: () => 'Ahora' },
+            { condition: () => diffInMinutes < 60, format: () => `${diffInMinutes}m` },
+            { condition: () => diffInMinutes < 1440, format: () => `${Math.floor(diffInMinutes / 60)}h` },
+            { condition: () => true, format: () => messageTime.toLocaleDateString() }
+        ];
+        
+        const { format } = timeFormats.find(({ condition }) => condition());
+        return format();
     }
     
     updateMessageTimes() {
