@@ -60,6 +60,10 @@ const state = {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Reiniciar todas las barras de progreso a 0% antes de inicializar
+    document.querySelectorAll('.skill-progress').forEach(bar => {
+        bar.style.width = '0%';
+    });
     initializePortfolio();
 });
 
@@ -82,8 +86,14 @@ function initializePortfolio() {
         initializeContactForm();
         initializeTypingEffect();
         
-        // Initialize scroll effects
-        initializeScrollEffects();
+    // Initialize scroll effects
+    initializeScrollEffects();
+    
+    // Add scroll listeners for navigation
+    window.addEventListener('scroll', throttle(() => {
+        handleNavbarScroll();
+        updateActiveNavLink();
+    }, 16));
         
         console.log('✅ Portfolio initialized successfully!');
     } catch (error) {
@@ -98,10 +108,19 @@ function initializePortfolio() {
  */
 function cacheElements() {
     elements.navbar = document.querySelector('.navbar');
-    elements.hamburger = document.querySelector('.hamburger');
-    elements.mobileMenu = document.querySelector('.mobile-menu');
+    elements.hamburger = document.querySelector('.navbar-toggler');
+    elements.mobileMenu = document.querySelector('#navbarNav');
     elements.navLinks = document.querySelectorAll('.nav-link');
-    elements.navMenu = document.querySelector('.nav-menu');
+    elements.navMenu = document.querySelector('.navbar-nav');
+    
+    // Debug logging
+    console.log('🔍 Cached elements:', {
+        navbar: !!elements.navbar,
+        hamburger: !!elements.hamburger,
+        mobileMenu: !!elements.mobileMenu,
+        navLinksCount: elements.navLinks.length,
+        navMenu: !!elements.navMenu
+    });
     
     elements.heroSubtitle = document.querySelector('.hero-subtitle');
     elements.heroTitle = document.querySelector('.hero-title');
@@ -125,53 +144,49 @@ function cacheElements() {
  */
 
 function initializeNavigation() {
-    // Cache DOM elements
-    elements.navbar = document.querySelector('.navbar');
-    elements.hamburger = document.querySelector('.hamburger');
-    elements.mobileMenu = document.querySelector('.mobile-menu');
-    elements.navLinks = document.querySelectorAll('.nav-link');
-    elements.navMenu = document.querySelector('.nav-menu');
-
+    if (!elements.navMenu) return;
+    
     // Add index to nav items for staggered animation
-    const mobileMenuItems = elements.mobileMenu?.querySelectorAll('.nav-menu li');
+    const mobileMenuItems = elements.mobileMenu?.querySelectorAll('.navbar-nav li');
     mobileMenuItems?.forEach((link, index) => {
         link.style.setProperty('--item-index', index);
     });
     
-    // Mobile menu toggle
-    if (elements.hamburger && elements.mobileMenu) {
-        elements.hamburger.addEventListener('click', toggleMobileMenu);
-    }
+    // NO agregamos event listener al hamburger, Bootstrap lo maneja automáticamente
     
     // Smooth scrolling for navigation links
     elements.navLinks?.forEach(link => {
         link.addEventListener('click', handleNavClick);
-    });
-    
-    // Close menu when clicking outside
+    });    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (elements.mobileMenu?.classList.contains('active') &&
-            !elements.mobileMenu.querySelector('.nav-menu').contains(e.target) &&
+        if (elements.mobileMenu?.classList.contains('show') &&
+            !elements.mobileMenu.contains(e.target) &&
             !elements.hamburger?.contains(e.target)) {
-            toggleMobileMenu();
+            // Usar Bootstrap para cerrar el menú
+            const bsCollapse = bootstrap.Collapse.getInstance(elements.mobileMenu);
+            if (bsCollapse) {
+                bsCollapse.hide();
+            }
         }
-    });
-    
-    // Navbar scroll effect
-    window.addEventListener('scroll', handleNavbarScroll);
-    
-    // Actualizar enlaces activos al desplazar
-    window.addEventListener('scroll', updateActiveNavLink);
+    });    // Escuchar eventos de Bootstrap collapse
+    if (elements.mobileMenu) {
+        elements.mobileMenu.addEventListener('shown.bs.collapse', () => {
+            document.body.classList.add('menu-open');
+            hideChatToggle();
+        });
+        
+        elements.mobileMenu.addEventListener('hidden.bs.collapse', () => {
+            document.body.classList.remove('menu-open');
+            showChatToggle();
+        });
+    }
     
     // Handle window resize to reset chat visibility
     window.addEventListener('resize', () => {
         const chatToggle = document.getElementById('chat-toggle') || document.querySelector('.chat-toggle');
         if (chatToggle && window.innerWidth > 768) {
             // En desktop, asegurar que el chat esté visible
-            chatToggle.style.opacity = '1';
-            chatToggle.style.visibility = 'visible';
-            chatToggle.style.pointerEvents = 'auto';
-            chatToggle.style.transform = 'scale(1)';
+            showChatToggle();
         }
     });
     
@@ -180,7 +195,12 @@ function initializeNavigation() {
 }
 
 function toggleMobileMenu(e) {
-    // Prevenir cualquier comportamiento por defecto
+    // Si el evento viene de Bootstrap, no hacer nada (ya se maneja automáticamente)
+    if (e && e.target && e.target.hasAttribute('data-bs-toggle')) {
+        return;
+    }
+    
+    // Prevenir cualquier comportamiento por defecto para eventos manuales
     if (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -188,9 +208,18 @@ function toggleMobileMenu(e) {
     
     const body = document.body;
     
-    elements.hamburger?.classList.toggle('active');
-    elements.mobileMenu?.classList.toggle('active');
-    body.classList.toggle('menu-open');
+    // Usar Bootstrap collapse para manejar el menú
+    if (elements.mobileMenu) {
+        const bsCollapse = new bootstrap.Collapse(elements.mobileMenu, {
+            toggle: true
+        });
+        
+        // Actualizar estados del botón hamburguesa
+        const isExpanded = elements.hamburger?.getAttribute('aria-expanded') === 'true';
+        elements.hamburger?.classList.toggle('collapsed', isExpanded);
+        elements.hamburger?.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+        body.classList.toggle('menu-open', !isExpanded);
+    }
     
     // Ocultar/mostrar el botón del chat cuando se abre/cierra el menú móvil
     const chatToggle = document.getElementById('chat-toggle') || document.querySelector('.chat-toggle');
@@ -224,9 +253,12 @@ function handleNavClick(e) {
         const targetElement = document.getElementById(targetId);
         
         if (targetElement) {
-            // Cerrar menú móvil si está abierto
-            if (elements.mobileMenu?.classList.contains('active')) {
-                toggleMobileMenu();
+            // Cerrar menú móvil si está abierto (Bootstrap collapse)
+            if (elements.mobileMenu?.classList.contains('show')) {
+                const bsCollapse = bootstrap.Collapse.getInstance(elements.mobileMenu);
+                if (bsCollapse) {
+                    bsCollapse.hide();
+                }
             }
             
             // Actualizar el estado activo inmediatamente en el enlace actual
@@ -242,6 +274,28 @@ function handleNavClick(e) {
                 behavior: 'smooth'
             });
         }
+    }
+}
+
+function hideChatToggle() {
+    const chatToggle = document.getElementById('chat-toggle') || document.querySelector('.chat-toggle');
+    if (chatToggle) {
+        chatToggle.style.opacity = '0';
+        chatToggle.style.visibility = 'hidden';
+        chatToggle.style.pointerEvents = 'none';
+        chatToggle.style.transform = 'scale(0.1)';
+        chatToggle.style.transition = 'all 0.3s ease';
+    }
+}
+
+function showChatToggle() {
+    const chatToggle = document.getElementById('chat-toggle') || document.querySelector('.chat-toggle');
+    if (chatToggle) {
+        chatToggle.style.opacity = '1';
+        chatToggle.style.visibility = 'visible';
+        chatToggle.style.pointerEvents = 'auto';
+        chatToggle.style.transform = 'scale(1)';
+        chatToggle.style.transition = 'all 0.3s ease';
     }
 }
 
@@ -343,38 +397,61 @@ function initializeTypingEffect() {
     let textIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    
+    let marqueeTimeout = null;
+
+    function isMobile() {
+        return window.innerWidth <= 767;
+    }
+    function needsMarquee() {
+        if (!isMobile()) return false;
+        // Medir si el texto es más largo que el contenedor visible
+        if (!typingElement.parentElement) return false;
+        // Forzar render para obtener ancho real
+        typingElement.style.maxWidth = '90vw';
+        typingElement.style.whiteSpace = 'nowrap';
+        return typingElement.scrollWidth > typingElement.offsetWidth + 2;
+    }
+    function setMarquee(active) {
+        if (active) {
+            typingElement.classList.add('marquee');
+        } else {
+            typingElement.classList.remove('marquee');
+        }
+    }
     function type() {
         const currentText = texts[textIndex];
-        
         if (isDeleting) {
             typingElement.textContent = currentText.substring(0, charIndex - 1);
             charIndex--;
+            setMarquee(false);
         } else {
             typingElement.textContent = currentText.substring(0, charIndex + 1);
             charIndex++;
         }
-        
         let typingSpeed = CONFIG.TYPING_SPEED;
-        
         if (isDeleting) {
-            typingSpeed /= 2; // Delete faster
+            typingSpeed /= 2;
         }
-        
         if (!isDeleting && charIndex === currentText.length) {
-            // Pause at end
             typingSpeed = 1500;
+            // Solo activar marquee si es móvil y el texto desborda
+            if (needsMarquee()) {
+                // Esperar un poco antes de activar marquee para que el usuario vea el texto completo
+                marqueeTimeout = setTimeout(() => setMarquee(true), 500);
+            }
             isDeleting = true;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
-            textIndex = (textIndex + 1) % texts.length; // Move to next text
-            typingSpeed = 500; // Pause before starting next word
+            textIndex = (textIndex + 1) % texts.length;
+            typingSpeed = 500;
+            setMarquee(false);
+            if (marqueeTimeout) {
+                clearTimeout(marqueeTimeout);
+                marqueeTimeout = null;
+            }
         }
-        
         setTimeout(type, typingSpeed);
     }
-    
-    // Start typing effect after hero animation
     setTimeout(type, 2000);
 }
 
@@ -740,13 +817,12 @@ function handleParallaxScroll() {
         const rate = scrolled * -0.5;
         hero.style.transform = `translateY(${rate}px)`;
     }
-    
-    // Floating icons parallax
-    const floatingIcons = document.querySelectorAll('.floating-icon');
-    floatingIcons.forEach((icon, index) => {
-        const rate = scrolled * (0.1 + index * 0.05);
-        icon.style.transform = `translateY(${rate}px) rotate(${rate * 0.1}deg)`;
-    });
+    // Eliminar la sobrescritura de transform en los iconos flotantes para permitir la animación CSS continua
+    // const floatingIcons = document.querySelectorAll('.floating-icon');
+    // floatingIcons.forEach((icon, index) => {
+    //     const rate = scrolled * (0.1 + index * 0.05);
+    //     icon.style.transform = `translateY(${rate}px) rotate(${rate * 0.1}deg)`;
+    // });
 }
 
 function createScrollToTopButton() {

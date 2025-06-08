@@ -37,21 +37,13 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
         </div>
     </nav>    <!-- Hero Section -->
     <section id="inicio" class="hero min-vh-100 d-flex align-items-center">
-        <div class="floating-icons">
-            <i class="fab fa-html5 floating-icon"></i>
-            <i class="fab fa-css3-alt floating-icon"></i>
-            <i class="fab fa-js-square floating-icon"></i>
-            <i class="fab fa-php floating-icon"></i>
-            <i class="fab fa-react floating-icon"></i>
-            <i class="fab fa-git-alt floating-icon"></i>
-        </div>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-10 text-center">
                     <div class="hero-content">
                         <p class="hero-subtitle">👋 Bienvenido a mi portafolio</p>
                         <h1 class="hero-title display-1 fw-bold mb-4">
-                            Soy <?php echo $nombre; ?><br>
+                            <span class="hero-soy">Soy</span> <span class="hero-name"><?php echo $nombre; ?></span><br>
                             <span class="typing-text">Desarrollador Web</span>
                         </h1>
                         <p class="hero-description lead mb-5">
@@ -135,24 +127,27 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                         <p class="lead">Tecnologías que he aprendido y competencias que he desarrollado</p>
                     </div>
                 </div>
-            </div>            <div class="row g-4">
-                <!-- Habilidades Técnicas -->                
-                 <div class="col-12 col-lg-6 pe-lg-4">
-                    <div class="technical-skills p-4 rounded-3 bg-dark bg-opacity-10 h-100">
-                        <h3 class="h4 mb-4"><i class="fas fa-laptop-code me-2"></i> Habilidades Técnicas</h3>
-                        <div class="d-flex align-items-start p-3 mt-4 mb-4 bg-dark bg-opacity-20 rounded-3">
-                            <i class="fas fa-robot text-warning me-3 flex-shrink-0 mt-1" style="font-size: 1.75rem;"></i>
+            </div>            <div class="row g-4 align-items-start">
+                <!-- Habilidades Técnicas -->
+                <div class="col-12 col-lg-6 pe-lg-4 position-relative">
+                    <h3 class="h4 mb-4 skills-header"><i class="fas fa-laptop-code me-2"></i> Habilidades Técnicas</h3>
+                    <div class="ia-info-robot card border-0 bg-light bg-opacity-10 shadow-sm mb-4 p-3 d-flex flex-column flex-md-row align-items-center gap-3 text-center text-md-start" aria-hidden="false">
+                        <div class="d-flex flex-row align-items-center gap-2">
+                            <div style="min-width:48px;">
+                                <i class="fas fa-robot text-warning" style="font-size:2.2rem;"></i>
+                            </div>
                             <div class="flex-grow-1">
-                                <h4 class="h6 mb-2 text-warning">Desarrollado con la ayuda inestimable de la IA</h4>
-                                <p class="mb-0 small">
-                                    Todas estas habilidades técnicas han sido adquiridas y perfeccionadas 
-                                    con el apoyo constante de herramientas de inteligencia artificial, 
-                                    que han sido fundamentales en mi proceso de aprendizaje y desarrollo profesional.
+                                <h4 class="h6 mb-1 text-warning fw-bold">Desarrollado con la ayuda inestimable de la IA</h4>
+                                <p class="mb-0 small text-light">
+                                    Todas estas habilidades técnicas han sido adquiridas y perfeccionadas con el apoyo constante de herramientas de inteligencia artificial, que han sido fundamentales en mi proceso de aprendizaje y desarrollo profesional.
                                 </p>
                             </div>
                         </div>
+                    </div>
+                    <div class="technical-skills p-4 rounded-3 bg-dark bg-opacity-10 h-100">
                         
-                        <h4 class="h6 mb-3 mt-4">Lenguajes y tecnologías:</h4>
+                        
+                        
                           <div class="skill-item mb-4">
                             <div class="d-flex justify-content-between mb-2">
                                 <span class="skill-name fw-medium">PHP</span>
@@ -255,10 +250,11 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                         </div> 
                      </div>               
                   </div>                <!-- Habilidades Sociales -->    
-                <div class="col-12 col-lg-6 ps-lg-4 mt-4 mt-lg-0">
+                <div class="col-12 col-lg-6 ps-lg-4">
+                    <h3 class="h4 mb-4 skills-header"><i class="fas fa-users me-2"></i> Habilidades Sociales</h3>
                     <div class="soft-skills p-4 rounded-3 bg-dark bg-opacity-10 h-100">
-                        <h3 class="h4 mb-4"><i class="fas fa-users me-2"></i> Habilidades Sociales</h3>
-                        <div class="row g-4"><div class="col-12 col-md-6">
+                        <div class="row g-4">
+                            <div class="col-12 col-md-6">
                                 <div class="soft-skill-item text-center p-4 rounded-3 bg-light bg-opacity-10 h-100">
                                     <i class="fas fa-lightbulb fs-1 text-warning mb-3"></i>
                                     <h4 class="h6 fw-bold mb-2">Aprendizaje Rápido</h4>
@@ -509,64 +505,53 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                         <p class="lead">Estoy buscando oportunidades para comenzar mi carrera profesional</p>
                     </div>
                 </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-10 col-lg-8">
-                    <div class="contact-info bg-light bg-opacity-10 rounded-3 p-4">
-                        <h3 class="h4 mb-4 text-center">Información de Contacto</h3>
-                        
-                        <div class="row g-4">
-                            <div class="col-12 col-md-6">
-                                <div class="contact-item d-flex align-items-center p-3 rounded-3 bg-dark bg-opacity-10 h-100">
-                                    <i class="fas fa-envelope fs-2 text-warning me-3"></i>
-                                    <div class="contact-item-content">
-                                        <h4 class="h6 mb-1">Email</h4>
-                                        <p class="mb-0"><?php echo $email; ?></p>
-                                    </div>
-                                </div>
+            </div>            <!-- Tarjetas de Información de Contacto -->
+            <div class="row justify-content-center g-4">
+                <div class="col-12 text-center mb-4">
+                    <h3 class="h4 mb-0 text-warning">Información de Contacto</h3>
+                </div>
+                
+                <!-- Tarjeta Email -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="contact-card card border-0 h-100 text-center p-4 bg-light bg-opacity-10 rounded-4 shadow-sm">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <div class="contact-icon mb-3">
+                                <i class="fas fa-envelope fs-1 text-warning"></i>
                             </div>
-                            <!--
-                            <div class="col-12 col-md-6">
-                                <div class="contact-item d-flex align-items-center p-3 rounded-3 bg-dark bg-opacity-10 h-100">
-                                    <i class="fab fa-linkedin fs-2 text-warning me-3"></i>
-                                    <div class="contact-item-content">
-                                        <h4 class="h6 mb-1">LinkedIn</h4>
-                                        <p class="mb-0">Conecta conmigo profesionalmente</p>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col-12 col-md-6">
-                                <div class="contact-item d-flex align-items-center p-3 rounded-3 bg-dark bg-opacity-10 h-100">
-                                    <i class="fab fa-github fs-2 text-warning me-3"></i>
-                                    <div class="contact-item-content">
-                                        <h4 class="h6 mb-1">GitHub</h4>
-                                        <p class="mb-0">Revisa mi código y proyectos</p>
-                                    </div>
-                                </div>
-                            </div>
-                            -->
-                            
-                            <div class="col-12 col-md-6">
-                                <div class="contact-item d-flex align-items-center p-3 rounded-3 bg-dark bg-opacity-10 h-100">
-                                    <i class="fas fa-phone fs-2 text-warning me-3"></i>
-                                    <div class="contact-item-content">
-                                        <h4 class="h6 mb-1">Teléfono</h4>
-                                        <p class="mb-0">+34 645 82 75 93</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-12 col-md-6">
-                                <div class="contact-item d-flex align-items-center p-3 rounded-3 bg-dark bg-opacity-10 h-100">
-                                    <i class="fas fa-briefcase fs-2 text-warning me-3"></i>
-                                    <div class="contact-item-content">
-                                        <h4 class="h6 mb-1">Disponibilidad</h4>
-                                        <p class="mb-0">Inmediata para nuevos proyectos</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <h5 class="card-title text-white mb-2">Email</h5>
+                            <p class="card-text text-light opacity-75 mb-0 small"><?php echo $email; ?></p>
                         </div>
                     </div>
+                </div>
+                
+                <!-- Tarjeta Teléfono -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="contact-card card border-0 h-100 text-center p-4 bg-light bg-opacity-10 rounded-4 shadow-sm">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <div class="contact-icon mb-3">
+                                <i class="fas fa-phone fs-1 text-warning"></i>
+                            </div>
+                            <h5 class="card-title text-white mb-2">Teléfono</h5>
+                            <p class="card-text text-light opacity-75 mb-0 small">+34 645 82 75 93</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tarjeta Disponibilidad -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="contact-card card border-0 h-100 text-center p-4 bg-light bg-opacity-10 rounded-4 shadow-sm">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <div class="contact-icon mb-3">
+                                <i class="fas fa-briefcase fs-1 text-warning"></i>
+                            </div>
+                            <h5 class="card-title text-white mb-2">Disponibilidad</h5>
+                            <p class="card-text text-light opacity-75 mb-0 small">Inmediata para nuevos proyectos</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
                 <!-- formulario contacto
                 <form class="contact-form" action="contact.php" method="POST">
                     <h3>Envíame un mensaje</h3>

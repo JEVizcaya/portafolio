@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Mobile Menu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-menu-open {
+            overflow: hidden;
+        }
+        
+        section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        #hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        #about { background: #f8f9fa; }
+        #projects { background: #e9ecef; }
+        #contact { background: #dee2e6; }
+        
+        .test-info {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1000;
+        }
+        
+        @media (max-width: 767px) {
+            .test-info {
+                position: relative;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Test Info Panel -->
+    <div class="test-info">
+        <strong>Test Instructions:</strong><br>
+        1. Click hamburger menu (mobile)<br>
+        2. Click nav links → menu should close<br>
+        3. Click outside menu → menu should close<br>
+        4. Open console to see debug logs
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-code"></i> Test Portfolio
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#hero">
+                            <i class="fas fa-home"></i> Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">
+                            <i class="fas fa-user"></i> Sobre Mí
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">
+                            <i class="fas fa-briefcase"></i> Proyectos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">
+                            <i class="fas fa-envelope"></i> Contacto
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sections -->
+    <section id="hero">
+        <div class="text-center">
+            <h1>Hero Section</h1>
+            <p>Click the menu button to test mobile navigation</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="text-center">
+            <h2>About Section</h2>
+            <p>Test scrolling behavior</p>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="text-center">
+            <h2>Projects Section</h2>
+            <p>Menu should close when clicking nav links</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="text-center">
+            <h2>Contact Section</h2>
+            <p>Click outside menu to close it</p>
+        </div>
+    </section>
+
+    <!-- Chat Toggle (for testing chat hiding functionality) -->
+    <div id="chat-toggle" style="position: fixed; bottom: 20px; right: 20px; 
+                                background: #007bff; color: white; 
+                                width: 60px; height: 60px; 
+                                border-radius: 50%; 
+                                display: flex; align-items: center; justify-content: center;
+                                cursor: pointer; z-index: 999;">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Simplified version of the navigation code for testing
+        const elements = {
+            navbar: null,
+            hamburger: null,
+            mobileMenu: null,
+            navLinks: null,
+            navMenu: null
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Test page loaded, initializing navigation...');
+            cacheElements();
+            initializeNavigation();
+        });
+
+        function cacheElements() {
+            elements.navbar = document.querySelector('.navbar');
+            elements.hamburger = document.querySelector('.navbar-toggler');
+            elements.mobileMenu = document.querySelector('#navbarNav');
+            elements.navLinks = document.querySelectorAll('.nav-link');
+            elements.navMenu = document.querySelector('.navbar-nav');
+            
+            console.log('🔍 Cached elements:', {
+                navbar: !!elements.navbar,
+                hamburger: !!elements.hamburger,
+                mobileMenu: !!elements.mobileMenu,
+                navLinksCount: elements.navLinks.length,
+                navMenu: !!elements.navMenu
+            });
+        }
+
+        function initializeNavigation() {
+            if (!elements.navMenu) {
+                console.error('❌ Navigation elements not found');
+                return;
+            }
+            
+            console.log('✅ Navigation elements found, setting up event listeners...');
+            
+            // Smooth scrolling for navigation links
+            elements.navLinks?.forEach(link => {
+                link.addEventListener('click', handleNavClick);
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                console.log('🖱️ Document clicked', e.target.tagName, e.target.className);
+                if (elements.mobileMenu?.classList.contains('show') &&
+                    !elements.mobileMenu.contains(e.target) &&
+                    !elements.hamburger?.contains(e.target)) {
+                    console.log('🚪 Closing mobile menu via outside click');
+                    const bsCollapse = bootstrap.Collapse.getInstance(elements.mobileMenu);
+                    if (bsCollapse) {
+                        bsCollapse.hide();
+                    } else {
+                        console.warn('⚠️ Bootstrap Collapse instance not found for outside click');
+                    }
+                }
+            });
+            
+            // Listen for Bootstrap collapse events
+            if (elements.mobileMenu) {
+                elements.mobileMenu.addEventListener('shown.bs.collapse', () => {
+                    console.log('📱 Mobile menu opened');
+                    document.body.classList.add('mobile-menu-open');
+                    hideChatToggle();
+                });
+                
+                elements.mobileMenu.addEventListener('hidden.bs.collapse', () => {
+                    console.log('📱 Mobile menu closed');
+                    document.body.classList.remove('mobile-menu-open');
+                    showChatToggle();
+                });
+            }
+        }
+
+        function handleNavClick(e) {
+            const href = e.currentTarget.getAttribute('href');
+            console.log('🔗 Navigation link clicked:', href);
+            
+            if (href?.startsWith('#')) {
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    console.log('🎯 Scrolling to:', targetId);
+                    
+                    // Close mobile menu if open
+                    if (elements.mobileMenu?.classList.contains('show')) {
+                        console.log('🚪 Closing mobile menu after nav click');
+                        const bsCollapse = bootstrap.Collapse.getInstance(elements.mobileMenu);
+                        if (bsCollapse) {
+                            bsCollapse.hide();
+                        } else {
+                            console.warn('⚠️ Bootstrap Collapse instance not found for nav click');
+                        }
+                    }
+                    
+                    // Update active state
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    e.currentTarget.classList.add('active');
+                    
+                    // Smooth scroll
+                    const offsetTop = targetElement.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    console.warn('⚠️ Target element not found:', targetId);
+                }
+            }
+        }
+
+        function hideChatToggle() {
+            const chatToggle = document.getElementById('chat-toggle');
+            if (chatToggle) {
+                console.log('💬 Hiding chat toggle');
+                chatToggle.style.opacity = '0';
+                chatToggle.style.visibility = 'hidden';
+                chatToggle.style.pointerEvents = 'none';
+                chatToggle.style.transform = 'scale(0.1)';
+                chatToggle.style.transition = 'all 0.3s ease';
+            }
+        }
+
+        function showChatToggle() {
+            const chatToggle = document.getElementById('chat-toggle');
+            if (chatToggle) {
+                console.log('💬 Showing chat toggle');
+                chatToggle.style.opacity = '1';
+                chatToggle.style.visibility = 'visible';
+                chatToggle.style.pointerEvents = 'auto';
+                chatToggle.style.transform = 'scale(1)';
+                chatToggle.style.transition = 'all 0.3s ease';
+            }
+        }
+
+        // Add some visual feedback for testing
+        elements.hamburger?.addEventListener('click', () => {
+            console.log('🍔 Hamburger button clicked');
+        });
+    </script>
+</body>
+</html>

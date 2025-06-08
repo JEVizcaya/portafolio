@@ -194,33 +194,27 @@ class PortfolioChat {    constructor() {
         console.log('Opening chat...');
         if (this.chatContainer) {
             const body = document.body;
-            
             // Mostrar overlay en móviles y prevenir scroll
-            if (this.isMobileDevice()) {                this.showChatOverlay();
+            if (this.isMobileDevice()) {
+                this.showChatOverlay();
                 body.classList.add('chat-open-mobile');
             }
-            
             this.chatContainer.classList.add('active');
             this.isOpen = true;
             this.chatToggle.classList.remove('has-notification');
-            
             // Ocultar el botón del chat cuando se abre
             if (this.chatToggle) {
                 this.chatToggle.classList.add('hidden');
             }
-            
             console.log('Chat container classes:', this.chatContainer.className);
-            
-            // Enfocar el input (con delay para móviles)
+            // Enfocar el input solo en desktop (no en móvil, ni portrait ni landscape)
             const focusDelay = this.isMobileDevice() ? 500 : 300;
             setTimeout(() => {
-                if (this.chatInput && !this.isMobileDevice()) {
-                    // No enfocar automáticamente en móviles para evitar que aparezca el teclado
+                if (this.chatInput && window.innerWidth > 991) { // Solo desktop
                     this.chatInput.focus();
                 }
                 this.scrollToBottom();
             }, focusDelay);
-            
         } else {
             console.error('Chat container not found when trying to open');
         }
@@ -398,24 +392,18 @@ class PortfolioChat {    constructor() {
             }, 100);
         }
     }    saveChatHistory() {
-        try {
-            // Usar sessionStorage para que el historial se borre al cerrar el navegador
-            sessionStorage.setItem('portfolio_chat_history', JSON.stringify(this.messageHistory));
-        } catch (error) {
-            console.warn('Could not save chat history:', error);
-        }
+        // No guardar historial: limpiar sessionStorage siempre
+        sessionStorage.removeItem('portfolio_chat_history');
     }    loadChatHistory() {
         try {
-            // Cargar historial de sessionStorage (se borra al cerrar navegador)
-            const history = sessionStorage.getItem('portfolio_chat_history');
-            if (history) {
-                this.messageHistory = JSON.parse(history);
-                this.renderChatHistory();            } else {
-                // Mensaje de bienvenida
-                this.addMessage('¡Hola! 👋 Soy el asistente virtual de Jorge Enrique Vizcaya Vega. ¿En qué puedo ayudarte?', 'bot');
-            }        } catch (error) {
+            // No cargar historial: siempre iniciar con mensaje de bienvenida
+            this.messageHistory = [];
+            this.renderChatHistory();
+            this.addMessage('¡Hola! 👋 Soy el asistente virtual de Jorge Enrique Vizcaya Vega. ¿En qué puedo ayudarte?', 'bot');
+        } catch (error) {
             console.warn('Could not load chat history:', error);
-            // Mensaje de bienvenida por defecto si hay error
+            this.messageHistory = [];
+            this.renderChatHistory();
             this.addMessage('¡Hola! 👋 Soy el asistente virtual de Jorge Enrique Vizcaya Vega. ¿En qué puedo ayudarte?', 'bot');
         }
     }
