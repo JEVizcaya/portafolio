@@ -49,6 +49,8 @@ CONTEXTO DEL PORTAFOLIO - JORGE ENRIQUE VIZCAYA VEGA
 - Email: jevizcaya77@gmail.com
 - GitHub: JEVizcaya
 - Telefono:+34 645 82 75 93
+- Edad: 47 años
+- fecha de nacimiento: 16-07-1977
 - Numero de proyectos publicados en github:41
 - Numero de seguidores en github:5
 

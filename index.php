@@ -322,11 +322,11 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                         <p class="mb-4">
                             CeltaFan es un portal para aficcionados del Celta de Vigo,
                             donde se pueden consultar noticias, resultados, plantilla, proximos partidos y más.
-                        </p>
-                        <div class="project-tech mb-4">
+                        </p>                        <div class="project-tech mb-4">
                             <span class="badge bg-warning text-dark me-2 mb-2">Python</span>
                             <span class="badge bg-warning text-dark me-2 mb-2">Django</span>
                             <span class="badge bg-warning text-dark me-2 mb-2">SQLite</span>
+                            <span class="badge bg-success text-white me-2 mb-2">En línea</span>
                         </div>
                         <div class="project-links d-flex gap-2 mt-auto">
                             <a href="https://jorgevizcaya.pythonanywhere.com/" class="btn btn-outline-warning btn-sm flex-fill">
@@ -348,16 +348,16 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                             <div class="project-icon fs-1 text-warning mb-3">
                                 <i class="fas fa-project-diagram"></i>
                             </div>
-                            <h3 class="h5 fw-bold mb-3">Gestor de Proyectos</h3>
+                            <h3 class="h5 fw-bold mb-3">DevFlow. Gestor de Proyectos</h3>
                         </div>
                         <p class="mb-4">
                             Aplicación web para gestionar proyectos y asignar tareas a colaboradores con 
                             funcionalidades CRUD y interfaz intuitiva.
-                        </p>
-                        <div class="project-tech mb-4">
+                        </p>                        <div class="project-tech mb-4">
                             <span class="badge bg-warning text-dark me-2 mb-2">PHP</span>
                             <span class="badge bg-warning text-dark me-2 mb-2">React</span>
                             <span class="badge bg-warning text-dark me-2 mb-2">Javascript</span>
+                            <span class="badge bg-success text-white me-2 mb-2">En línea</span>
                         </div>
                         <div class="project-links d-flex gap-2 mt-auto">
                             <a href="https://devflow-je.web.app/" class="btn btn-outline-warning btn-sm flex-fill">
@@ -384,11 +384,11 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                         <p class="mb-4">
                             Aplicación web que utiliza un patrón MVC con IA integrada para generar respuestas a preguntas frecuentes.
                             Incluye un sistema de gestión de usuarios y una interfaz amigable.
-                        </p>
-                        <div class="project-tech mb-4">
+                        </p>                        <div class="project-tech mb-4">
                             <span class="badge bg-warning text-dark me-2 mb-2">PHP</span>
                             <span class="badge bg-warning text-dark me-2 mb-2">JavaScript</span>
                             <span class="badge bg-warning text-dark me-2 mb-2">CSS</span>
+                            <span class="badge bg-success text-white me-2 mb-2">En línea</span>
                         </div>
                         <div class="project-links d-flex gap-2 mt-auto">
                             <a href="https://prestashop2025.lovestoblog.com/" class="btn btn-outline-warning btn-sm flex-fill">
@@ -409,8 +409,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                         <div class="text-center mb-3">
                             <div class="project-icon fs-1 text-warning mb-3">
                                 <i class="fab fa-wordpress"></i>
-                            </div>
-                            <h3 class="h5 fw-bold mb-3">Proyecto Wordpress</h3>
+                            </div>                            <h3 class="h5 fw-bold mb-3">Proyecto Wordpress</h3>
                         </div>
                         <p class="mb-4">
                             Sitio web desarrollado con WordPress que muestra la pagina web de un taller mecánico
@@ -420,6 +419,7 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                             <span class="badge bg-warning text-dark me-2 mb-2">PHP</span>
                             <span class="badge bg-warning text-dark me-2 mb-2">JavaScript</span>
                             <span class="badge bg-warning text-dark me-2 mb-2">CSS3</span>
+                            <span class="badge bg-success text-white me-2 mb-2">En línea</span>
                         </div>
                         <div class="project-links d-flex gap-2 mt-auto">
                             <a href="https://jorgevizcaya.wuaze.com/" class="btn btn-outline-warning btn-sm flex-fill">
@@ -428,33 +428,29 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                             </a>
                         </div>
                     </div>
-                </div>
-
-                <!-- Proyecto 5 -->
+                </div>                <!-- Proyecto 5 -->
                 <div class="project-item">
                     <div class="project-card p-4 rounded-4 bg-light bg-opacity-10">
                         <div class="text-center mb-3">
                             <div class="project-icon fs-1 text-warning mb-3">
-                                <i class="fas fa-blog"></i>
+                                <i class="fas fa-calendar-plus"></i>
                             </div>
-                            <h3 class="h5 fw-bold mb-3">Blog</h3>
+                            <h3 class="h5 fw-bold mb-3">¿Quedamos?</h3>
                         </div>
                         <p class="mb-4">
-                            Blog personal desarrollado con React + Node + Postgres, donde se pueden crear, editar y eliminar publicaciones.
-                            Incluye autenticación de usuarios y una interfaz amigable.
-                        </p>
-                        <div class="project-tech mb-4">
-                            <span class="badge bg-warning text-dark me-2 mb-2">React</span>
-                            <span class="badge bg-warning text-dark me-2 mb-2">Vite</span>
+                            Aplicación web social para crear y unirse a planes locales. Los usuarios pueden proponer actividades, encontrar personas con intereses similares y organizar quedadas en su ciudad.
+                        </p>                        <div class="project-tech mb-4">
+                            <span class="badge bg-warning text-dark me-2 mb-2">PHP</span>
                             <span class="badge bg-warning text-dark me-2 mb-2">JavaScript</span>
-                            <span class="badge bg-warning text-dark me-2 mb-2">MySQL</span>
+                            <span class="badge bg-warning text-dark me-2 mb-2">CSS3</span>
+                            <span class="badge bg-success text-white me-2 mb-2">En línea</span>
                         </div>
                         <div class="project-links d-flex gap-2 mt-auto">
-                            <a href="https://jevizcaya.github.io/frontblog/" class="btn btn-outline-warning btn-sm flex-fill">
+                            <a href="https://quedamos.free.nf/" class="btn btn-outline-warning btn-sm flex-fill">
                                 <i class="fas fa-external-link-alt me-1"></i>
                                 Ver Proyecto
                             </a>
-                            <a href="https://github.com/JEVizcaya/frontblog" class="btn btn-outline-light btn-sm flex-fill">
+                            <a href="https://github.com/JEVizcaya/planes-app.git" class="btn btn-outline-light btn-sm flex-fill">
                                 <i class="fab fa-github me-1"></i>
                                 Código
                             </a>
@@ -474,11 +470,11 @@ $linkedin = 'https://linkedin.com/in/jorge-enrique-vizcaya-vega';
                         <p class="mb-4">
                             Tienda online básica desarrollada con Prestashop y MySQL. 
                             Incluye carrito de compras, gestión de productos y panel administrativo.
-                        </p>
-                        <div class="project-tech mb-4">
+                        </p>                        <div class="project-tech mb-4">
                             <span class="badge bg-warning text-dark me-2 mb-2">Prestashop</span>
                             <span class="badge bg-warning text-dark me-2 mb-2">MySQL</span>
                             <span class="badge bg-warning text-dark me-2 mb-2">CSS3</span>
+                            <span class="badge bg-info text-dark me-2 mb-2">En desarrollo</span>
                         </div>
                         <div class="project-links d-flex gap-2 mt-auto">
                             <a href="http://tiendajevv.rf.gd/" class="btn btn-outline-warning btn-sm flex-fill">
